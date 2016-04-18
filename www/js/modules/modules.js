@@ -51,7 +51,7 @@ angular.module('modules', [
         'views': {
           'step-view': {
             'templateUrl': 'js/modules/wizard/step2/step2.tmpl.html',
-            controller : 'WizardStepTwoController'
+            controller : 'WizardStepTwoController as vm'
             
    
           }
@@ -62,7 +62,7 @@ angular.module('modules', [
         'views': {
           'step-view': {
             'templateUrl': 'js/modules/wizard/step3/step3.tmpl.html',
-            controller :'WizardStepTrheeController'
+            controller :'WizardStepThreeController as vm'
   
 
           }

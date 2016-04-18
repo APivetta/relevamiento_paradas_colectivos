@@ -12,12 +12,19 @@ function MapController($log,$state, $cordovaDevice,$cordovaGeolocation) {
 		};
 		
      	vm.openWizard = function (){
-			$state.go('wizard.step1');
+			$state.go('wizard.step3');
      	}
 
 
 
      	vm.locate = function(){
+
+
+
+navigator.geolocation.getCurrentPosition(function(data){
+  console.log(data);
+});
+
 
         $cordovaGeolocation
           .getCurrentPosition()
