@@ -1,0 +1,28 @@
+
+
+
+<ion-view view-title="Localizacion">
+	
+
+
+  <leaflet lf-center="vm.map.center" markers="vm.map.markers" height="300px" width="100%">
+        </leaflet>
+  <p>{{vm.center}}</p>
+
+
+    <div class="list">
+	  <label class="item item-input item-floating-label">
+	    <span class="input-label">Calle</span>
+	    <input type="text" ng-model="vm.fields.nombre" placeholder="Calle">
+	  </label>
+	  <label class="item item-input item-floating-label">
+	    <span class="input-label">Numeracion</span>
+	    <input type="text" ng-model="vm.fields.numero" placeholder="Numeracion">
+	  </label>
+	    <button ng-show="vm.ready" ng-click="next()" class="button button-block">Buscar</button>
+	</div>
+
+	{{vm.fields}}
+
+</ion-view> 
+
