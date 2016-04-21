@@ -1,6 +1,9 @@
 'use strict';
 angular.module('ParadApp', [
-  // load your modules here
+  'ionic-material',
+  // 'ionicMaterialInk',
+  // 'ionicMaterialMotion',
+  
   'modules',
   'services'
 ]);

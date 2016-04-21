@@ -1,1 +1,117 @@
+<ion-view view-title="Parada {{vm.fields.name}}">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
+    
+    <ion-content data-tap-disabled="true"> 
+		<div class="list">
+    		<h3>Parada</h3>
+    		   <leaflet lf-center="vm.fields.coordenadas" markers="vm.map.markers" height="300px" width="100%"></leaflet>
+     
+			<label class="item item-input item-floating-label">
+                <span class="input-label">Calle</span>
+                <input type="text" ng-model="vm.fields.calle" placeholder="Calle">
+            </label>
+            <label class="item item-input item-floating-label">
+                <span class="input-label">Numero</span>
+                <input type="text" ng-model="vm.fields.numero" placeholder="Numero">
+            </label>
+            
+            <label class="item item-input item-floating-label">
+                <span class="input-label">Coordenadas</span>
+                <input type="text" ng-model="vm.fields.coordenadas" disabled="" >
+            </label>
+  
+			<label class="item item-input item-select">
+			    <div class="input-label">Paridad</div>
+			    <select ng-model="vm.fields.paridad">
+			      <option>PAR</option>
+			      <option>INPAR</option>
+			    </select>
+			</label>
+
+			<label class="item item-input item-floating-label">
+                <span class="input-label">Entre Calle 1</span>
+                <input type="text" ng-model="vm.fields.entre1" placeholder="Entre Calle 1">
+            </label>
+
+			<label class="item item-input item-floating-label">
+                <span class="input-label">Entre Calle 2</span>
+                <input type="text" ng-model="vm.fields.entre2" placeholder="Entre Calle 2">
+            </label>
+
+
+			<label class="item item-input item-floating-label">
+                <span class="input-label">Capacidad</span>
+                <input type="text" ng-model="vm.fields.capacidad" placeholder="Capacidad">
+            </label>
+
+			<label class="item item-input item-floating-label">
+                <span class="input-label">Observaciones</span>
+                <textarea ng-model="vm.fields.observcaciones" placeholder="Observaciones" name="Observaciones" rows="5"></textarea> 
+            </label>
+
+
+			<label class="item item-input item-select">
+			    <div class="input-label">Tipo</div>
+			    <select ng-model="vm.fields.tipo">
+			      <option>Poste 1    </option>
+			      <option>Poste 2    </option>
+			      <option>Poste 3    </option>
+			      <option>Poste 4    </option>
+			      <option>Refugio 1  </option>
+			      <option>Refugio 2  </option>
+			      <option>No oficial </option>
+			    </select>
+			</label>
+			<label class="item item-input item-select">
+			    <div class="input-label">Estado</div>
+			    <select ng-model="vm.fields.estado">
+			      <option value="1" >Bueno</option>
+			      <option value="2" >Requiere mantenimiento</option>
+			      <option value="3" >infraestructura inexistente</option>
+			      <option calue="4" >No oficial</option>
+			    </select>
+			</label>
+
+			<label class="item item-input item-select">
+			    <div class="input-label">Foto</div>
+			    <img ng-src="" alt="">
+			</label>
+
+
+			
+		</div>
+
+		<button  class="button button-block" ng-click="vm.next()">Siguiente</button>
+	</ion-content>
+</ion-view> 
+
+
 DETAIL TMPL
+
+parada
+	calle
+	numero
+	coordenadas
+	paridad
+	entre1
+	entre2
+	capacidad
+	observaciones
+	tipo:
+	estado:
+	link_foto
+	revisar
+
+recorrido 
+	linea
+	ramal
+	direccion
+	descripcion
+	fecha_actualizacion
+
+demarcacion
+	cordon_pintado
+	darsena_pintada
+

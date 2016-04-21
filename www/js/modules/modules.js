@@ -3,18 +3,23 @@ angular.module('modules', [
     'ionic',
     'ngCordova',
     'ui.router',
+    'ionMdInput',
     'leaflet-directive'
 
   ])
-  .config(function($stateProvider, $urlRouterProvider) {
+  .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 
-
+  $ionicConfigProvider.views.maxCache(0);
 
 
     // ROUTING with ui.router
     $urlRouterProvider.otherwise('/map');
     $stateProvider
-
+      .state('login', {
+        'url': '/login',
+        'templateUrl': 'js/modules/login/login.tmpl.html',
+        'controller': 'LoginController as vm'
+      })
       .state('map', {
         'url': '/map',
         'templateUrl': 'js/modules/map/map.tmpl.html',

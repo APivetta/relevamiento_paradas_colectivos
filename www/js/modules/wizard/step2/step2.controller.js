@@ -10,16 +10,18 @@ function WizardStepTwoController($log,$state, $cordovaDevice) {
 			center : {}	
 		};
 
-
-		 
 		vm.$state = $state ; 
+
+		vm.next = function (){
+			$state.go('wizard.step3');
+     	}
 
 	    navigator.geolocation.getCurrentPosition(function(pos) {
           
 	    	vm.map.center = {
 		        lat:pos.coords.latitude,
 		        lng: pos.coords.longitude,
-		        zoom: 8
+		        zoom: 15
 		    } ; 
         
         }, function(error) {

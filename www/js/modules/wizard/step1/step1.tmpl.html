@@ -1,28 +1,30 @@
+<ion-view view-title="Localizacion Nueva Parada">
+    <ion-nav-buttons side="right">                
+        <button ng-click="vm.locate();" class="button-icon icon ion-pinpoint"></button>
+    </ion-nav-buttons>
 
 
 
-<ion-view view-title="Localizacion">
-	
+    <ion-content data-tap-disabled="true">
+        
+        <div class="">
+            <leaflet lf-center="vm.map.center" markers="vm.map.markers" height="400px" width="100%" id="step1Map"></leaflet>
+        </div>
+        
+        <form  ng-submit="vm.keyboardSubmit($event)" navalidate >
+        <div  class="list">
 
-
-  <leaflet lf-center="vm.map.center" markers="vm.map.markers" height="300px" width="100%">
-        </leaflet>
-  <p>{{vm.center}}</p>
-
-
-    <div class="list">
-	  <label class="item item-input item-floating-label">
-	    <span class="input-label">Calle</span>
-	    <input type="text" ng-model="vm.fields.nombre" placeholder="Calle">
-	  </label>
-	  <label class="item item-input item-floating-label">
-	    <span class="input-label">Numeracion</span>
-	    <input type="text" ng-model="vm.fields.numero" placeholder="Numeracion">
-	  </label>
-	    <button ng-show="vm.ready" ng-click="next()" class="button button-block">Buscar</button>
-	</div>
-
-	{{vm.fields}}
-
-</ion-view> 
-
+            <label class="item item-input item-floating-label">
+                <span class="input-label">Calle</span>
+                <input type="text" ng-model="vm.fields.nombre" next-focus id="field1" placeholder="Calle">
+            </label>
+            <label class="item item-input item-floating-label">
+                <span class="input-label">Numeracion</span>
+                <input type="text" ng-model="vm.fields.numero" next-focus  id="field2" placeholder="Numeracion">
+            </label>
+            <!-- <button class="button button-block" ng-click="vm.next()">Siguiente</button> -->
+        </div>
+        	        </form>
+        {{vm.fields}}
+    </ion-content>
+</ion-view>

@@ -1,0 +1,66 @@
+TODO
+	+ login
+    ☐ copiar el de ionic-material
+    ☐ por defecto que entre ! 
+
+	+ mapa de paradas
+    ☐ buscar automaticamente la posicion
+    ☐ listar paradas cercanas en un radio de 1k ? 
+    ☐ quitar el boton de nuevo
+    ☐ tostada con opciones
+      ☐ listado de paradas
+      ☐ mostrar recorrido asignado
+
+	+ menu
+    ☐ ordernar las opciones
+
+
+	+ wizard
+		- paso 1
+      ☐ boton de buscar 
+      ☐ geolocalizacion
+      ☐ bindear a servicio wizarz
+      ☐ funcionalidad siguiente si esta bien cargado
+
+		- paso 2 
+      ☐ completar formulario
+      ☐ bindear a servicio wizard
+		- paso3 
+      ☐ completar formulario
+      ☐ bindear a servicio wizard
+      ☐ bindear imagen a wizard
+      ☐ maquetar imagen
+
+	  + mas pasos ? 
+		- ultimo paso (detalle extenso) 
+      ☐ boton de guardar
+      ☐ popupconfirmacion
+      ☐ redireccionar a detalle
+
+
+	+ busqueda
+    ☐ maquetar
+
+	+ detalle
+      
+    ☐ poner el nextfocus
+
+
+	SERVICIOS
+		wizard
+      ☐ iniciar wizard
+      ☐ mantener estado del formulario
+
+		usuarios
+      ☐ auth
+      ☐ update info
+      ☐ get  tareas asignadas
+
+		paradas
+      ☐ crear
+      ☐ modificar (updatear)
+      ☐ listar
+      ☐ get(id)
+			diccionarios
+        ☐ tipo de parada
+        ☐ estado de la parada

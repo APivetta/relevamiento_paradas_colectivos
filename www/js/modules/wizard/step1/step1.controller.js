@@ -1,35 +1,78 @@
 'use strict';
 angular.module('modules')
-.controller('WizardStepOneController', ['$log', '$state','$cordovaDevice',WizardStepOneController]);
+.controller('WizardStepOneController', ['$log', '$state','$cordovaDevice','leafletData',WizardStepOneController]);
 
 
-function WizardStepOneController($log,$state, $cordovaDevice) {
+function WizardStepOneController($log,$state, $cordovaDevice,leafletData) {
 		var vm = this;
 
 		vm.ready = false;
+
 		vm.map = {
-			center : {}	
+			center  : {},
+			markers : {}
 		};
 
 		vm.fields = {
-			nombre : "" ,
+			calle  : "" ,
 			numero : ""
 		}
-		 
+		
+		locate ();
+
 		vm.$state = $state ; 
 
-	    navigator.geolocation.getCurrentPosition(function(pos) {
+     	vm.next   = next   ; 
+     	vm.locate = locate ;
+     	vm.keyboardSubmit = keyboardSubmit; 
+
+     	/////////
+
+     	function keyboardSubmit ($event) {
+     		$event.preventDefault();
+     		alert('hello my friend');
+     	}
+
+ 		function next (){
+ 			alert('hello my friend');	
+			//$state.go('wizard.step2');
+     	}
+
+     	function locate (){
+     		navigator.geolocation.getCurrentPosition(function(position) {
           
 	    	vm.map.center = {
-		        lat:pos.coords.latitude,
-		        lng: pos.coords.longitude,
-		        zoom: 8
+		        lat:position.coords.latitude,
+		        lng: position.coords.longitude,
+		        zoom: 15
 		    } ; 
+
+           vm.map.markers.now = {
+              lat:position.coords.latitude,
+              lng:position.coords.longitude,
+              message: "Parada N",
+              focus: true,
+              draggable: true
+            };
         
+            	leafletData.getMap('step1Map').then(function(map) {
+                   // L.marker().
+                   console.log("GOT THE MAP");
+                });
+
+
         }, function(error) {
           $log.log('Unable to get location: ' + error.message);
         });
      
+     	}
+	
+		function next(){
+			$state.go('wizard.step2');
+		}	
+
+
+
 
      
   $log.log('Hello from your Controller: WizardStepOneController in module main:. This is your controller:', this);

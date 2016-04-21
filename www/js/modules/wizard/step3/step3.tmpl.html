@@ -14,14 +14,20 @@
  <button ng-show="vm.ready" ng-click="next()" class="button button-block">Buscar</button> -->
 
 
-<ion-view view-title="Linea y ramal">
-    <div class="list">
-	  
-	  <button  ng-click="vm.takePicture()" class="button button-block">take picture</button>
+<ion-view view-title="Estado y Foto">
+	<ion-nav-buttons side="left">
+        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
+    
 
-  <button  ng-click="vm.takePicture()" class="button button-block">take picture</button>
-	  	<img ng-src = "{{vm.picture}}">
-	    <button class="button button-block">Siguiente</button>
-	</div>
+ 	<ion-content data-tap-disabled="true">
+	    <div class="list">
+		  
+		  
+	 	 <button  ng-click="vm.takePicture()" class="button button-block">take picture</button>
+		 <img ng-src = "{{vm.picture}}">
+		 <button class="button button-block">Siguiente</button>
+		</div>
+	</ion-content>
 </ion-view> 
 
