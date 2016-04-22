@@ -33,8 +33,16 @@
                 <span class="input-label">Entre Calle 2</span>
                 <input type="text" ng-model="vm.fields.entre2" placeholder="Entre Calle 2">
             </label>
+            <label class="item item-input item-floating-label">
+                <span class="input-label">Capacidad</span>
+                <input type="text" ng-model="vm.fields.capacidad" placeholder="Capacidad">
+            </label>
+            <label class="item item-input item-floating-label">
+                <span class="input-label">Observaciones</span>
+                <textarea ng-model="vm.fields.observcaciones" placeholder="Observaciones" name="Observaciones" rows="5"></textarea>
+            </label>
             <label class="item item-input item-select">
-                <div class="input-label">Linea</div>
+                <div ng-model="vm.fields.lineas" class="input-label">Linea</div>
                 <select>
                     <option>59</option>
                     <option>60</option>
@@ -43,21 +51,13 @@
                 </select>
             </label>
             <label class="item item-input item-select">
-                <div class="input-label">Ramal</div>
+                <div ng-model="vm.fields.ramales" class="input-label">Ramal</div>
                 <select>
                     <option>uno</option>
                     <option>dos</option>
                     <option selected>tres</option>
                     <option>cuatro</option>
                 </select>
-            </label>
-            <label class="item item-input item-floating-label">
-                <span class="input-label">Capacidad</span>
-                <input type="text" ng-model="vm.fields.capacidad" placeholder="Capacidad">
-            </label>
-            <label class="item item-input item-floating-label">
-                <span class="input-label">Observaciones</span>
-                <textarea ng-model="vm.fields.observcaciones" placeholder="Observaciones" name="Observaciones" rows="5"></textarea>
             </label>
             <label class="item item-input item-select">
                 <div class="input-label">Tipo</div>

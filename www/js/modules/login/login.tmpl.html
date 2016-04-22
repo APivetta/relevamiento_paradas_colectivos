@@ -13,11 +13,11 @@
         </div>
 
         <div class="list">
-            <ion-md-input placeholder="Username" highlight-color="balanced" ng-model="vm.name" type="text"></ion-md-input>
-            <ion-md-input placeholder="Password" highlight-color="energized" ng-model="vm.password" type="password"></ion-md-input>
+            <ion-md-input placeholder="Username" highlight-color="balanced" ng-model="vm.user.name" type="text"></ion-md-input>
+            <ion-md-input placeholder="Password" highlight-color="energized" ng-model="vm.user.pass" type="password"></ion-md-input>
         </div>
         <div class="padding">
-            <button ng-click="login()" class="button button-full button-assertive ink">Login</button>
+            <button ng-click="vm.login()" class="button button-full button-assertive ink">Login</button>
         </div>
 <!--         <div class="button-bar social-login">
             <button class="button button-small button-border icon-left ion-social-google button-assertive-900">Google+</button>

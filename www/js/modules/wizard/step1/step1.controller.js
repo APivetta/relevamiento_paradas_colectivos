@@ -1,9 +1,9 @@
 'use strict';
 angular.module('modules')
-.controller('WizardStepOneController', ['$log', '$state','$cordovaDevice','leafletData',WizardStepOneController]);
+.controller('WizardStepOneController', ['$log', '$state','$cordovaDevice','leafletData','wizardService',WizardStepOneController]);
 
 
-function WizardStepOneController($log,$state, $cordovaDevice,leafletData) {
+function WizardStepOneController($log,$state, $cordovaDevice,leafletData,wizardService) {
 		var vm = this;
 
 		vm.ready = false;
@@ -13,12 +13,10 @@ function WizardStepOneController($log,$state, $cordovaDevice,leafletData) {
 			markers : {}
 		};
 
-		vm.fields = {
-			calle  : "" ,
-			numero : ""
-		}
-		
-		locate ();
+    wizardService.start();
+    vm.fields = wizardService.fields;
+    
+    locate ();
 
 		vm.$state = $state ; 
 
@@ -31,11 +29,13 @@ function WizardStepOneController($log,$state, $cordovaDevice,leafletData) {
      	function keyboardSubmit ($event) {
      		$event.preventDefault();
      		alert('hello my friend');
+
+
      	}
 
  		function next (){
- 			alert('hello my friend');	
-			//$state.go('wizard.step2');
+ 			//alert('hello my friend');	
+			$state.go('app.wizard.step2');
      	}
 
      	function locate (){
@@ -67,10 +67,6 @@ function WizardStepOneController($log,$state, $cordovaDevice,leafletData) {
      
      	}
 	
-		function next(){
-			$state.go('wizard.step2');
-		}	
-
 
 
 

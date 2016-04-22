@@ -10,16 +10,19 @@ function MapController($log,$state, $cordovaDevice,$cordovaGeolocation) {
 			center: {},
 			markers:{}
 		};
-		
-     	vm.openWizard = function (){
+      locate();
+      vm.openWizard = openWizard; 
+      vm.locate = locate;
+
+     	function openWizard (){
 			$state.go('wizard.step1');
      	}
 
-     	vm.locate = function(){
+     	function locate(){
 
-        navigator.geolocation.getCurrentPosition(function(data){
-          console.log(data);
-        });
+        // navigator.geolocation.getCurrentPosition(function(data){
+        //   console.log(data);
+        // });
 
 
         $cordovaGeolocation

@@ -1,20 +1,28 @@
 'use strict';
 angular.module('modules')
-.controller('LoginController', ['$log', '$state','$cordovaDevice', '$cordovaGeolocation',LoginController]);
+    .controller('LoginController', ['$log', '$state', '$cordovaDevice', '$cordovaGeolocation', LoginController]);
 
 
-function LoginController($log,$state, $cordovaDevice,$cordovaGeolocation) {
-		var vm = this;
+function LoginController($log, $state, $cordovaDevice, $cordovaGeolocation) {
+    var vm = this;
 
-		vm.map =  {
-			user: "usuarioModelo",
-			passwor:"1234567890"
-		};
-		
-    
-    
+    vm.user = {
+        name: "usuarioModelo",
+        pass: "12345678"
+    };
 
-  $log.log('Hello from your Controller: LoginController in module main:. This is your controller:', this);
+
+
+    vm.login = login;
+
+
+    function login() {
+        $state.go('app.map');
+    }
+
+
+
+
+    $log.log('Hello from your Controller: LoginController in module main:. This is your controller:', this);
 
 }
-      

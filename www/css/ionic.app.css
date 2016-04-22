@@ -9732,10 +9732,13 @@ a.button {
   transition-duration: 0s; }
 
 #login-background {
-  background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url(/img/login.jpg);
+  background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url("/img/login.jpg");
   background-size: cover;
   h1-color: white;
   h1-font-weight: bold; }
+
+.ion-autocomplete-container {
+  z-index: 12; }
 
 .menu-header {
   display: flex;

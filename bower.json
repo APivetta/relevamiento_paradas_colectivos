@@ -19,6 +19,7 @@
     "cordova": "^3.4.0",
     "ionic-material": "^0.4.2",
     "robotodraft": "^1.1.0",
-    "ion-md-input": "^1.0.4"
+    "ion-md-input": "^1.0.4",
+    "ion-autocomplete": "^0.3.2"
   }
 }

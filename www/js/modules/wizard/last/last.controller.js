@@ -1,9 +1,9 @@
 'use strict';
 angular.module('modules')
-  .controller('WizardStepThreeController', ['$log', '$state', 'CameraService', WizardStepThreeController]);
+  .controller('WizardLastStepController', ['$log', '$state', 'CameraService', WizardLastStepController]);
 
 
-function WizardStepThreeController($log, $state, CameraService) {
+function WizardLastStepController($log, $state, CameraService) {
   var vm = this;
 
 
@@ -31,10 +31,10 @@ function WizardStepThreeController($log, $state, CameraService) {
   vm.$state = $state;
 
   function next() {
-    $state.go('app.wizard.lastStep');
+    $state.go('detail');
   }
 
 
-  $log.log('Hello from your Controller: WizardStepThreeController in module main:. This is your controller:', this);
+  $log.log('Hello from your Controller: WizardLastStepController in module main:. This is your controller:', this);
 
 }

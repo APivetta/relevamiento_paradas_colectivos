@@ -10,6 +10,8 @@
     <link href="css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="lib/leaflet/dist/leaflet.css" />
     <link rel="stylesheet" href="lib/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+    <link href="lib/ion-autocomplete/dist/ion-autocomplete.css" rel="stylesheet">
+
     <!-- <link rel="stylesheet" href="lib/ionic/css/ionic.css"> -->
     <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above-->
     <link href="css/ionic.app.css" rel="stylesheet">
@@ -20,72 +22,7 @@
 </head>
 
 <body ng-app="ParadApp">
-    <ion-side-menus enable-menu-with-back-views="true" ng-cloak>
-        <ion-side-menu-content>
-            <ion-nav-bar class="bar-assertive-900" ng-class="{expanded: isExpanded, 'has-header-fab-left': hasHeaderFabLeft, 'has-header-fab-right': hasHeaderFabRight}" align-title="left">
-                <ion-nav-back-button class="no-text">
-                </ion-nav-back-button>
-                
-                <ion-nav-buttons side="left">
-                    <button class="button button-icon button-clear ion-android-more-vertical" menu-toggle="left">
-                    </button>
-                </ion-nav-buttons>
-
-<!--             <span class="left-buttons">
-                <button class="button button-icon button-clear ion-android-more-vertical" menu-toggle="right">
-                </button>
-            </span>
- -->
-
-            </ion-nav-bar>
-
-<!-- 
-
-        <ion-header-bar class="bar-stable bar-assertive-900">
-
-                <div class="buttons buttons-right header-item"><span class="right-buttons">
-                <button class="button button-icon button-clear ion-android-more-vertical" menu-toggle="right">
-                </button>
-            </span></div>
-
-      <h1 class="title">Ionic Blank Starter</h1>
-    </ion-header-bar> -->
-
-
-            <ion-nav-view name="fabContent"></ion-nav-view>
-            <ion-nav-view animation="slide-left-right"></ion-nav-view>
-        </ion-side-menu-content>
-        <ion-side-menu side="left">
-            <ion-header-bar class="dark-bg expanded menu-header">
-                <span class="avatar" style="background: url('img/icon.png'); background-size: cover;"></span>
-                <h2>Paradas</h2>
-            </ion-header-bar>
-            <ion-content class="stable-bg has-expanded-header">
-                <ion-list>
-                    <ion-item menu-close ng-click="login()">
-                        Login
-                    </ion-item>
-                    <ion-item menu-close href="#/search">
-                        Buscar
-                    </ion-item>
-                    <ion-item menu-close href="#/wizard/step1">
-                        Nueva Parada
-                    </ion-item>
-                    <ion-item menu-close href="#/map">
-                        Mapa
-                    </ion-item>
-                    <ion-item menu-close href="#/detail">
-                        Detalle
-                    </ion-item>
-                </ion-list>
-            </ion-content>
-        </ion-side-menu>
-    </ion-side-menus>
-    <!-- 
-    <ion-nav-bar class="bar-positive">
-      <ion-nav-back-button></ion-nav-back-button>
-    </ion-nav-bar>
-    <ion-nav-view></ion-nav-view> -->
+    <ion-nav-view animation="slide-left-right"></ion-nav-view>
     <!-- libs -->
     <!-- <script src="lib/angular/angular.js"></script> -->
     <!-- <script src="lib/angular-animate/angular-animate.js"></script> -->
@@ -103,12 +40,15 @@
     <script src="lib/ionic/js/ionic.bundle.js"></script>
     <script src="lib/ionic-material/dist/ionic.material.min.js"></script>
     <script src="lib/ion-md-input/js/ion-md-input.js"></script>
-
+    <script src="lib/ion-autocomplete/dist/ion-autocomplete.js"></script>
     <!-- your app's js -->
     <script src="js/app.js"></script>
     <script src="js/modules/modules.js"></script>
     <script src="js/services/services.js"></script>
     <script src="js/services/cameraService.js"></script>
+    <script src="js/services/wizardService.js"></script>
+    <script src="js/services/paradasService.js"></script>
+
     <script src="js/modules/detail/detail.controller.js"></script>
     <script src="js/modules/login/login.controller.js"></script>
     <script src="js/modules/map/map.controller.js"></script>
@@ -117,6 +57,8 @@
     <script src="js/modules/wizard/step3/step3.controller.js"></script>
     <script src="js/modules/wizard/step2/step2.controller.js"></script>
     <script src="js/modules/wizard/step1/step1.controller.js"></script>
+    <script src="js/modules/wizard/last/last.controller.js"></script>
+
     <script src="js/modules/wizard/common/focus.directive.js"></script>
 </body>
 
