@@ -15,7 +15,7 @@ function MapController($log,$state, $cordovaDevice,$cordovaGeolocation) {
       vm.locate = locate;
 
      	function openWizard (){
-			$state.go('wizard.step1');
+  			$state.go('app.wizard.step1');
      	}
 
      	function locate(){

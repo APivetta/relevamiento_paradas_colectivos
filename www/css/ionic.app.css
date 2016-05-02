@@ -9737,6 +9737,13 @@ a.button {
   h1-color: white;
   h1-font-weight: bold; }
 
+span.modification-label {
+  color: red;
+  right: .5em;
+  top: .5em;
+  position: absolute;
+  font-size: .8em; }
+
 .ion-autocomplete-container {
   z-index: 12; }
 

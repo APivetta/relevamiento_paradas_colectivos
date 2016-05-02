@@ -1,25 +1,25 @@
 TODO
 	+ login
-    ☐ copiar el de ionic-material
-    ☐ por defecto que entre ! 
+    ✔ copiar el de ionic-material @done (16-04-27 16:49)
+    ✔ por defecto que entre ! @done (16-04-27 16:49)
 
 	+ mapa de paradas
-    ☐ buscar automaticamente la posicion
+    ✔ buscar automaticamente la posicion @done (16-04-27 16:50)
     ☐ listar paradas cercanas en un radio de 1k ? 
-    ☐ quitar el boton de nuevo
+    ✔ quitar el boton de nuevo @done (16-04-27 16:50)
     ☐ tostada con opciones
       ☐ listado de paradas
       ☐ mostrar recorrido asignado
 
 	+ menu
-    ☐ ordernar las opciones
+    ✔ ordernar las opciones @done (16-04-27 16:50)
 
 
 	+ wizard
 		- paso 1
       ☐ boton de buscar 
       ☐ geolocalizacion
-      ☐ bindear a servicio wizarz
+      ✔ bindear a servicio wizarz @done (16-04-28 14:40)
       ☐ funcionalidad siguiente si esta bien cargado
 
 		- paso 2 
@@ -64,3 +64,7 @@ TODO
 			diccionarios
         ☐ tipo de parada
         ☐ estado de la parada
+
+
+
+

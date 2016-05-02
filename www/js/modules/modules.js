@@ -28,19 +28,17 @@ angular.module('modules', [
                 controller: function() {}
             })
             .state('app.map', {
-                url: '/mapa',
+
                 views: {
                     'viewContent': {
-                        'templateUrl': 'js/modules/map/map.tmpl.html',
-                        controller: 'MapController as vm'
+                        templateUrl : 'js/modules/map/map.tmpl.html',
+                        controller  : 'MapController as vm',
+
                     },
                     'fabContent': {
-                        template: '<button ng-click="vm.openWizard()" id="fab-friends" class="button button-fab button-fab-bottom-right expanded button-energized-900 spin"><i class="icon ion-plus"></i></button>',
-                        controller: function($timeout) {
-                            $timeout(function() {
-                                document.getElementById('fab-friends').classList.toggle('on');
-                            }, 500);
-                        }
+                        templateUrl : 'js/modules/map/fab.tmpl.html',
+                        controller  : 'MapFabButtonController as vm'
+
                     }
                 }
             })

@@ -4,7 +4,9 @@
     </ion-nav-buttons>
     <ion-content data-tap-disabled="true">
         <div class="">
-            <leaflet lf-center="vm.map.center" markers="vm.map.markers" height="400px" width="100%" id="step1Map"></leaflet>
+            <div style="height:500px; width:100%;" id="step1Map"></div>
+            <!-- <leaflet lf-center="vm.map.center" markers="vm.map.markers" height="400px" width="100%" id="step1Map"></leaflet> -->
+
         </div>
         <form ng-submit="vm.keyboardSubmit($event)" navalidate>
             <div class="list">
@@ -18,6 +20,9 @@
                 </label>
                 <label class="item item-input item-floating-label">
                     <span class="input-label">Coordenadas</span>
+                    <span ng-if="vm.fields.correccion" class="modification-label">Corregida</span>
+                    <span ng-if="vm.fields.correccion" class="precition-label"> Precision: {{vm.fields.precision}}Mts</span>
+
                     <input type="text" ng-model="vm.fields.coordenadas" disabled="">
                 </label>
                 <label class="item item-input item-select">

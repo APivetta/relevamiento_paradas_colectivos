@@ -5,12 +5,12 @@
 
 
 
-    <ion-content data-tap-disabled="true">
-        <leaflet lf-center="vm.map.center" markers="vm.map.markers" height="400px" width="100%">
+    <ion-content  scroll="false" data-tap-disabled="true">
+        <leaflet lf-center="vm.map.center" markers="vm.map.markers" height="100%" width="100%">
         </leaflet>
-        <button ng-click="vm.openWizard()" class="button button-block button-energized">
+ <!--        <button ng-click="vm.openWizard()" class="button button-block button-energized">
             Crear parada
-        </button>
+        </button> -->
         <p>marker: {{vm.map.markers.now}}</p>
     </ion-content>
 </ion-view>
