@@ -1,4 +1,4 @@
-angular.module( 'services').factory('ParadasService', function($q) {
+angular.module( 'services').factory('paradasService', function($q,$http) {
 
    var active = false ; 
    var fields = {} ; 
@@ -29,7 +29,14 @@ angular.module( 'services').factory('ParadasService', function($q) {
       console.log("paradas service post ")
    }
    function list () {
-      console.log("paradas service list ")
+ 
+      var promise = $http({
+            method: 'GET',
+            url: 'mock/paradas.geojson'
+      });
+      
+
+      return promise;   
    }
 
    return {

@@ -28,7 +28,7 @@ angular.module('modules', [
                 controller: function() {}
             })
             .state('app.map', {
-
+                url: '/map',
                 views: {
                     'viewContent': {
                         templateUrl : 'js/modules/map/map.tmpl.html',
