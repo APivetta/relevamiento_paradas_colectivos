@@ -1,22 +1,68 @@
 'use strict';
 angular.module('modules')
-.controller('MapController', ['$log', '$state','$cordovaDevice', '$cordovaGeolocation',MapController]);
+.controller('MapController', ['$log', '$state','$cordovaDevice', '$cordovaGeolocation','locationService','paradasService',MapController]);
 
 
-function MapController($log,$state, $cordovaDevice,$cordovaGeolocation) {
+function MapController($log,$state, $cordovaDevice,$cordovaGeolocation,locationService,paradasService) {
 		var vm = this;
 
-		vm.map =  {
-			center: {},
-			markers:{}
-		};
-      locate();
+    vm.positionMarker = {} ;
+    vm.map = { } ; 
+      createMap();
       vm.openWizard = openWizard; 
       vm.locate = locate;
 
      	function openWizard (){
   			$state.go('app.wizard.step1');
+
+
      	}
+
+
+      function createMap(){
+        locationService.locate().then(onSuccess,onFail);
+
+        function onSuccess (data){
+          vm.map = L.map('map').setView([data.lat,data.lng],16);
+            L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(vm.map);
+
+            vm.positionMarker = L.marker([data.lat,data.lng],{draggable:true}).addTo(vm.map)
+                .bindPopup('Posicion actual \nprecision: '+data.accuracy+" mts")
+                .openPopup();
+            mapParadas();
+        };
+
+        function onFail    (error){
+
+        };
+
+
+        function mapParadas(){
+          paradasService.list().then(function (data){
+
+            console.log(data);
+            data.data.features.forEach(function (elements,index){
+              
+              var coords = [elements.geometry.coordinates[0][1],elements.geometry.coordinates[0][0]]
+
+
+              L.marker(coords,{clickable:true,draggable:false})
+              .addTo(vm.map)
+              .on('click',function(e){
+                console.log(e);
+                console.log(elements.properties);
+
+              });
+            });
+
+
+
+          });
+        }
+
+      }
 
      	function locate(){
 
@@ -25,26 +71,7 @@ function MapController($log,$state, $cordovaDevice,$cordovaGeolocation) {
         // });
 
 
-        $cordovaGeolocation
-          .getCurrentPosition()
-          .then(function (position) {
-          	vm.map.center.lat  = position.coords.latitude;
-            vm.map.center.lng = position.coords.longitude;
-            vm.map.center.zoom = 15;
 
-           vm.map.markers.now = {
-              lat:position.coords.latitude,
-              lng:position.coords.longitude,
-              message: "You Are Here",
-              focus: true,
-              draggable: false
-            };
-
-          }, function(err) {
-            // error
-            console.log("Location error!");
-            console.log(err);
-          });
 
       };
 
