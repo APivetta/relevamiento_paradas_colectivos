@@ -25,8 +25,6 @@ function WizardStepOneController($scope,$log, $state, $cordovaDevice, leafletDat
     vm.keyboardSubmit = keyboardSubmit;
 
 
-
-
     /////////
 
     function keyboardSubmit($event) {
