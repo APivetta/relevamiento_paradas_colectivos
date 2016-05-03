@@ -9736,6 +9736,9 @@ a.button {
   background-size: cover;
   h1-color: white;
   h1-font-weight: bold; }
+  #login-background .fields {
+    width: 100%;
+    padding-right: 7%; }
 
 span.modification-label {
   color: red;
