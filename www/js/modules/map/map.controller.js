@@ -31,6 +31,7 @@ function MapController($log,$state, $cordovaDevice,$cordovaGeolocation,locationS
             vm.positionMarker = L.marker([data.lat,data.lng],{draggable:true}).addTo(vm.map)
                 .bindPopup('Posicion actual \nprecision: '+data.accuracy+" mts")
                 .openPopup();
+
             mapParadas();
         };
 
@@ -43,17 +44,19 @@ function MapController($log,$state, $cordovaDevice,$cordovaGeolocation,locationS
           paradasService.list().then(function (data){
 
             console.log(data);
-            data.data.features.forEach(function (elements,index){
+            data.forEach(function (element,index){
               
-              var coords = [elements.geometry.coordinates[0][1],elements.geometry.coordinates[0][0]]
+              var coords = [element.lat,element.lng];
 
 
-              L.marker(coords,{clickable:true,draggable:false})
+            //L.circle(coords,5).addTo(vm.map)
+
+            L.marker(coords,{clickable:true,draggable:false})
               .addTo(vm.map)
               .on('click',function(e){
                 console.log(e);
-                console.log(elements.properties);
-
+                console.log(element.properties);
+                $state.go('app.detail',{paradaID:element.id})
               });
             });
 

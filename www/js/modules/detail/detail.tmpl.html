@@ -1,12 +1,14 @@
-<ion-view view-title="Parada {{vm.fields.name}}">
-    <ion-nav-buttons side="left">
-        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
-    </ion-nav-buttons>
+<ion-view view-title="Parada {{vm.fields.id}}">
+  
     <ion-content data-tap-disabled="true">
         <div class="list">
-            <h3>Parada</h3>
-            <leaflet lf-center="vm.fields.coordenadas" markers="vm.map.markers" height="300px" width="100%"></leaflet>
-            <label class="item item-input item-floating-label">
+            
+         
+
+            <div id="detailMap"></div>
+
+
+            <label ng-click="vm.showMe()"class="item item-input item-floating-label">
                 <span class="input-label">Calle</span>
                 <input type="text" ng-model="vm.fields.calle" placeholder="Calle">
             </label>

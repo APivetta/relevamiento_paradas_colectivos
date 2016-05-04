@@ -54,7 +54,7 @@ angular.module('modules', [
                 }
             })
             .state('app.detail', {
-                url: '/detail',
+                url: '/detalle/:paradaID',
                 views: {
                     'viewContent': {
                         'templateUrl': 'js/modules/detail/detail.tmpl.html',
