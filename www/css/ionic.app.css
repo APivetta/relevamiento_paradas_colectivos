@@ -9732,7 +9732,7 @@ a.button {
   transition-duration: 0s; }
 
 #login-background {
-  background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url("/img/login.jpg");
+  background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url("../img/login.jpg");
   background-size: cover;
   h1-color: white;
   h1-font-weight: bold; }
@@ -9762,6 +9762,24 @@ span.modification-label {
 
 .ion-autocomplete-container {
   z-index: 12; }
+
+.picture-wrapper {
+  position: relative;
+  width: 90%;
+  margin-left: 5%;
+  height: 25vh;
+  border: 1px solid red;
+  margin-top: 1vh; }
+  .picture-wrapper img {
+    height: 100%; }
+  .picture-wrapper .caption {
+    position: absolute;
+    top: 0px;
+    left: 0px; }
+  .picture-wrapper .actions-bar {
+    position: absolute;
+    bottom: 0px;
+    right: 0px; }
 
 .menu-header {
   display: flex;

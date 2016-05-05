@@ -99,6 +99,10 @@ angular.module('modules', [
                     'step-view': {
                         templateUrl: 'js/modules/wizard/step3/step3.tmpl.html',
                         controller: 'WizardStepThreeController as vm'
+                    },
+                    'step-three-fab': {
+                        templateUrl :'js/modules/wizard/step3/fab.tmpl.html',
+                        controller  : 'WizardStepThreeFabController as vm' 
                     }
                 }
             })

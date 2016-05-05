@@ -1,33 +1,24 @@
 'use strict';
 angular.module('modules')
-  .controller('WizardStepThreeController', ['$log', '$state', 'CameraService', WizardStepThreeController]);
+  .controller('WizardStepThreeController', ['$scope','$log', '$state', 'cameraService', WizardStepThreeController]);
 
 
-function WizardStepThreeController($log, $state, CameraService) {
+function WizardStepThreeController($scope,$log, $state, cameraService) {
   var vm = this;
 
 
-  vm.picture = '';
-  vm.takePicture = takePicture;
+  vm.pictures = cameraService.pictures;
+  // vm.takePicture = takePicture;
   vm.next = next;
 
+// $scope.$watch('vm.pictures',function(a){
+//   console.log(a);
+//   console.log('cammmmmbia todo cambiaaa');
+//   console.log(vm.pictures);
+// })
+
   /////////////////////////////
-  function takePicture() {
 
-    var options = {
-      quality: 75,
-      //targetWidth: 400,
-      //targetHeight: 200,
-      sourceType: 1
-    };
-
-    CameraService.getPicture(options).then(function(imageData) {
-      vm.picture = imageData;
-    }, function(err) {
-      console.log(err);
-    });
-
-  };
   vm.$state = $state;
 
   function next() {

@@ -11,3 +11,30 @@ span.modification-label {
 .ion-autocomplete-container{
 	z-index:12;
 }
+
+
+.picture-wrapper{
+	position: relative;
+    width: 90%;
+    margin-left: 5%;
+    height: 25vh;
+    border: 1px solid red;
+    margin-top: 1vh;
+
+	img{
+		height: 100%;
+	}
+
+	.caption{
+		position:absolute;
+		top:0px;
+		left:0px;
+
+	}
+	.actions-bar{
+		position:absolute;
+		bottom:0px;
+		right: 0px;
+	}
+
+}

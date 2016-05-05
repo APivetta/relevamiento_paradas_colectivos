@@ -24,10 +24,28 @@
 	    <div class="list">
 		  
 		  
-	 	 <button  ng-click="vm.takePicture()" class="button button-block">take picture</button>
-		 <img ng-src = "{{vm.picture}}">
+	    <div class="picture-wrapper" ng-repeat="picture in vm.pictures">
+		 	<img ng-src = "{{picture.src}}">
+		 	<div class="caption">
+		 		<div class="title">{{picture.title}}</div>
+		 		<div class="subtitle">{{picture.subtitle}}</div>
+		 	</div>
+		 	<div class="actions-bar">
+		 		<span class="action info">
+		 			<i class="icon ion-information"></i>
+		 		</span>
+		 		<span class="action delete">
+		 			<i class="icon ion-close-round"></i>
+		 		</span>
+
+		 		
+		 	</div>
+	    </div>
 		 <button class="button button-block" ng-click="vm.next()">Siguiente</button>
 		</div>
 	</ion-content>
 </ion-view> 
 
+
+
+	
