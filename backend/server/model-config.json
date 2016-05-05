@@ -1,0 +1,35 @@
+{
+  "_meta": {
+    "sources": [
+      "loopback/common/models",
+      "loopback/server/models",
+      "../common/models",
+      "./models"
+    ],
+    "mixins": [
+      "loopback/common/mixins",
+      "loopback/server/mixins",
+      "../common/mixins",
+      "./mixins"
+    ]
+  },
+  "User": {
+    "dataSource": "pg-local"
+  },
+  "AccessToken": {
+    "dataSource": "pg-local",
+    "public": false
+  },
+  "ACL": {
+    "dataSource": "pg-local",
+    "public": false
+  },
+  "RoleMapping": {
+    "dataSource": "pg-local",
+    "public": false
+  },
+  "Role": {
+    "dataSource": "pg-local",
+    "public": false
+  }
+}
