@@ -10,6 +10,7 @@ function WizardStepThreeController($scope,$log, $state, cameraService) {
   vm.pictures = cameraService.pictures;
   // vm.takePicture = takePicture;
   vm.next = next;
+  vm.deletePicture =  cameraService.deleteByID;
 
 // $scope.$watch('vm.pictures',function(a){
 //   console.log(a);
@@ -24,6 +25,7 @@ function WizardStepThreeController($scope,$log, $state, cameraService) {
   function next() {
     $state.go('app.wizard.lastStep');
   }
+
 
 
   $log.log('Hello from your Controller: WizardStepThreeController in module main:. This is your controller:', this);

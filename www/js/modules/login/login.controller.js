@@ -1,9 +1,14 @@
 'use strict';
 angular.module('modules')
-    .controller('LoginController', ['$log', '$state', '$cordovaDevice', '$cordovaGeolocation', LoginController]);
+    .controller('LoginController',[
+        '$log',
+        '$state',
+        'networkService',
+        LoginController
+    ]);
 
 
-function LoginController($log, $state, $cordovaDevice, $cordovaGeolocation) {
+function LoginController($log, $state,networkService) {
     var vm = this;
 
     vm.user = {
@@ -15,7 +20,19 @@ function LoginController($log, $state, $cordovaDevice, $cordovaGeolocation) {
 
     vm.login = login;
 
+    // $cordovaSplashscreen.show();
+    // console.log($cordovaSplashscreen);
+    //networkService.getStatus().then(handleNetwork);
 
+
+    function handleNetwork(networkType){
+
+        vm.network = networkType ; 
+
+        // si la red no esta conectada  == {none }
+        //loguear contra base local de usuarios 
+    }
+    
     function login() {
         $state.go('app.map');
     }

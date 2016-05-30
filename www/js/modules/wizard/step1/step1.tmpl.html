@@ -16,7 +16,7 @@
                 </label>
                 <label class="item item-input item-floating-label">
                     <span class="input-label">Numeracion</span>
-                    <input type="text" ng-model="vm.fields.numero" next-focus id="field2" placeholder="Numeracion">
+                    <input type="number" ng-model="vm.fields.numero" next-focus id="field2" placeholder="Numeracion">
                 </label>
                 <label class="item item-input item-floating-label">
                     <span class="input-label">Coordenadas</span>
@@ -43,6 +43,6 @@
                 <button class="button button-block" ng-click="vm.next()">Siguiente</button>
             </div>
         </form>
-        {{vm.fields}}
+       
     </ion-content>
 </ion-view>

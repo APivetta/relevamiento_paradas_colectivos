@@ -1,4 +1,9 @@
-angular.module( 'services').factory('wizardService', function($q) {
+angular.module( 'services').factory('wizardService',['$q','storageService',wizardService] );
+
+
+
+
+function wizardService($q,storageService) {
 
    var active = false ; 
    var fields = {} ; 
@@ -15,10 +20,10 @@ angular.module( 'services').factory('wizardService', function($q) {
    function blanck(){}
 
 
-   function store(callBack){
+   function store(){
 
-      //do the storing thing and callback
-      callBack();
+      storageService.handleStorage()
+      
    }
 
    return {
@@ -28,4 +33,4 @@ angular.module( 'services').factory('wizardService', function($q) {
       store : store
    }
 
-});
+}

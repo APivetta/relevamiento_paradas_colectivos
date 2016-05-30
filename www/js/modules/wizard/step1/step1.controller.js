@@ -29,18 +29,14 @@ function WizardStepOneController($scope,$log, $state, $cordovaDevice, leafletDat
 
     function keyboardSubmit($event) {
         $event.preventDefault();
-        alert('hello my friend');
-
-
     }
 
     function next() {
-        //alert('hello my friend'); 
+         
         $state.go('app.wizard.step2');
     }
 
     function locate(){
-        alert('need some direction ? ');
         locationService.locate().then(onSuccess,onFail);
         function onSuccess (data){
             positionMarker.setLatLng([data.lat,data.lng])

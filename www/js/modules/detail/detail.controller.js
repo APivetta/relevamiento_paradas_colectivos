@@ -17,12 +17,13 @@ function DetailController($log,$state,$stateParams, $cordovaDevice,$cordovaGeolo
         function paradaFounded(data){
         	console.log(JSON.stringify(data));
 
-        	leafletHelper.createMap('detailMap',data,'detalle').then(function(map){
-        		vm.map = map ; 
-        	});
-        	leafletHelper.createMarker('detailMap',data,'simple').then(function(marker){
-        		vm.marker = marker ; 
-        	});
+            leafletHelper.createMap('detailMap', data, 'detalle').then(function(map) {
+                vm.map = map;
+            });
+
+            leafletHelper.createMarker('detailMap', data, 'simple').then(function(marker) {
+                vm.marker = marker;
+            });
 
         	vm.fields = data; 
         }

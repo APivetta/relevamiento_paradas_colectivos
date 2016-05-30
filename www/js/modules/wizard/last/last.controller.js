@@ -1,33 +1,17 @@
 'use strict';
 angular.module('modules')
-  .controller('WizardLastStepController', ['$log', '$state', 'CameraService', WizardLastStepController]);
+  .controller('WizardLastStepController', ['$log', '$state', 'cameraService','wizardService', WizardLastStepController]);
 
 
-function WizardLastStepController($log, $state, CameraService) {
+function WizardLastStepController($log, $state, wizardService,cameraService) {
   var vm = this;
 
-
-  vm.picture = '';
-  vm.takePicture = takePicture;
-  vm.next = next;
+  vm.fields   = wizardService.fields;
+  vm.pictures = cameraService.pictures;
+ 
 
   /////////////////////////////
-  function takePicture() {
 
-    var options = {
-      quality: 75,
-      //targetWidth: 400,
-      //targetHeight: 200,
-      sourceType: 1
-    };
-
-    CameraService.getPicture(options).then(function(imageData) {
-      vm.picture = imageData;
-    }, function(err) {
-      console.log(err);
-    });
-
-  };
   vm.$state = $state;
 
   function next() {
