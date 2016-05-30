@@ -6,15 +6,13 @@
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
     <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src * 'self' 'unsafe-inline' 'unsafe-eval' 'unsafe-inline'; media-src * ;connect-src * ; img-src data: * 'self';">
     <title>Paradas</title>
-    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
     <link rel="stylesheet" href="lib/leaflet/dist/leaflet.css" />
     <link rel="stylesheet" href="lib/leaflet-control-geocoder/dist/Control.Geocoder.css" />
     <link href="lib/ion-autocomplete/dist/ion-autocomplete.css" rel="stylesheet">
 
     <!-- <link rel="stylesheet" href="lib/ionic/css/ionic.css"> -->
     <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above-->
-    <link href="css/ionic.app.css" rel="stylesheet">
     <link rel="stylesheet" href="lib/ionic-material/dist/ionic.material.min.css">
     <!-- ionic/angularjs js -->
     <!-- cordova script (this will be a 404 during development) -->
@@ -29,7 +27,7 @@
     <!-- <script src="lib/angular-sanitize/angular-sanitize.js"></script> -->
     <!-- <script src="lib/angular-ui-router/release/angular-ui-router.js"></script> -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
-     <script src="lib/ngCordova/dist/ng-cordova.js"></script>
+    <script src="lib/ngCordova/dist/ng-cordova.js"></script>
     <script src="cordova.js"></script>
     <script src="lib/angular-dynamic-locale/src/tmhDynamicLocale.js"></script>
     <script src="lib/angular-translate/angular-translate.js"></script>
@@ -42,36 +40,34 @@
     <script src="lib/ionic-material/dist/ionic.material.min.js"></script>
     <script src="lib/ion-md-input/js/ion-md-input.js"></script>
     <script src="lib/ion-autocomplete/dist/ion-autocomplete.js"></script>
+
+
     <!-- your app's js -->
-    <script src="js/app.js"></script>
-    <script src="js/modules/modules.js"></script>
-    <script src="js/services/services.js"></script>
-    <script src="js/services/camera.service.js"></script>
-    <script src="js/services/wizard.service.js"></script>
-    <script src="js/services/paradas.service.js"></script>
-    <script src="js/services/location.service.js"></script>
-    <script src="js/services/network.service.js"></script>
-    <script src="js/services/storage.service.js"></script>
+    <script src="app.js"></script>
+    <script src="modules/core/templates.js"></script>
+    <script src="modules/core/modules.js"></script>
+    <script src="modules/core/services.js"></script>
 
-    <script src="js/services/leafleatHelper.service.js"></script>
+    <script src="modules/services/camera.service.js"></script>
+    <script src="modules/services/wizard.service.js"></script>
+    <script src="modules/services/paradas.service.js"></script>
+    <script src="modules/services/location.service.js"></script>
+    <script src="modules/services/network.service.js"></script>
+    <script src="modules/services/storage.service.js"></script>
+    <script src="modules/services/leafleatHelper.service.js"></script>
 
-
-    <script src="js/modules/detail/detail.controller.js"></script>
-    <script src="js/modules/login/login.controller.js"></script>
-    <script src="js/modules/map/map.controller.js"></script>
-    <script src="js/modules/map/map.fab.button.controller.js"></script>
-    <script src="js/modules/wizard/wizard.controller.js"></script>
-    <script src="js/modules/search/search.controller.js"></script>
-    <script src="js/modules/wizard/step3/step3.controller.js"></script>
-    <script src="js/modules/wizard/step3/wizard.step3.fab.controller.js"></script>
-
-
-
-    <script src="js/modules/wizard/step2/step2.controller.js"></script>
-    <script src="js/modules/wizard/step1/step1.controller.js"></script>
-    <script src="js/modules/wizard/last/last.controller.js"></script>
-
-    <script src="js/modules/wizard/common/focus.directive.js"></script>
+    <script src="modules/detail/detail.controller.js"></script>
+    <script src="modules/login/login.controller.js"></script>
+    <script src="modules/map/map.controller.js"></script>
+    <script src="modules/map/map.fab.button.controller.js"></script>
+    <script src="modules/search/search.controller.js"></script>
+    <script src="modules/wizard/wizard.controller.js"></script>
+    <script src="modules/wizard/step1/step1.controller.js"></script>
+    <script src="modules/wizard/step2/step2.controller.js"></script>
+    <script src="modules/wizard/step3/step3.controller.js"></script>
+    <script src="modules/wizard/step3/wizard.step3.fab.controller.js"></script>
+    <script src="modules/wizard/last/last.controller.js"></script>
+    <script src="modules/wizard/common/focus.directive.js"></script>
 </body>
 
 </html>

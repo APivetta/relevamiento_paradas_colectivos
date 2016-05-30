@@ -6,15 +6,23 @@ var sass = require('gulp-sass');
 var minifyCss = require('gulp-minify-css');
 var rename = require('gulp-rename');
 var sh = require('shelljs');
+var templateCache = require('gulp-angular-templatecache');
 
 var paths = {
-  sass: ['./scss/**/*.scss','./www/js/modules/**/*.scss']
+  sass: ['./www/*.scss', './www/modules/**/*.scss'],
+  templates: ['./www/*.html', './www/modules/**/*.html']
 };
 
-gulp.task('default', ['sass']);
+gulp.task('default', ['sass', 'template-cache', 'watch']);
+
+gulp.task('template-cache', function() {
+  return gulp.src(paths.templates)
+    .pipe(templateCache({ standalone: true }))
+    .pipe(gulp.dest('./www/modules/core'));
+});
 
 gulp.task('sass', function(done) {
-  gulp.src('./scss/ionic.app.scss')
+  gulp.src('./www/styles.scss')
     .pipe(sass())
     .on('error', sass.logError)
     .pipe(gulp.dest('./www/css/'))
@@ -28,6 +36,7 @@ gulp.task('sass', function(done) {
 
 gulp.task('watch', function() {
   gulp.watch(paths.sass, ['sass']);
+  gulp.watch(paths.templates, ['template-cache']);
 });
 
 gulp.task('install', ['git-check'], function() {

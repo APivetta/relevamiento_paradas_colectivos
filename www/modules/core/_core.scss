@@ -1,0 +1,10 @@
+.menu-header {
+    display: flex;
+    align-items: baseline;
+    flex-direction: row-reverse;
+    justify-content: space-around;
+    .avatar {}
+    h2 {
+        margin-left: 2em;
+    }
+}
