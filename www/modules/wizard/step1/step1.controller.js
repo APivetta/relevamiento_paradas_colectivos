@@ -1,92 +1,94 @@
 'use strict';
 angular.module('modules')
-    .controller('WizardStepOneController', ['$scope','$log', '$state', '$cordovaDevice', 'leafletData', 'wizardService','locationService', WizardStepOneController]);
+  .controller('WizardStepOneController', ['$scope', '$log', '$state', '$cordovaDevice', 'leafletHelper', 'leafletData', 'wizardService', 'locationService', WizardStepOneController]);
 
 
-function WizardStepOneController($scope,$log, $state, $cordovaDevice, leafletData, wizardService,locationService) {
-    var vm = this;
+function WizardStepOneController($scope, $log, $state, $cordovaDevice, leafletHelper, leafletData, wizardService, locationService) {
+  var vm = this;
 
-    vm.ready = false;
-
-
-    wizardService.start();
-    vm.fields = wizardService.fields;
-
-    //map 
-    var positionMarker = {} ;
-    var accuracyCircle = {} ;
-    createMap();
-
-    vm.$state = $state;
-
-    vm.next = next;
-    vm.locate = locate;
-    vm.createMap = createMap;
-    vm.keyboardSubmit = keyboardSubmit;
+  vm.ready = false;
 
 
-    /////////
+  wizardService.start();
+  vm.fields = wizardService.fields;
 
-    function keyboardSubmit($event) {
-        $event.preventDefault();
-    }
+  //map 
+  var positionMarker = {};
+  var accuracyCircle = {};
+  createMap();
 
-    function next() {
-         
-        $state.go('app.wizard.step2');
-    }
+  vm.$state = $state;
 
-    function locate(){
-        locationService.locate().then(onSuccess,onFail);
-        function onSuccess (data){
-            positionMarker.setLatLng([data.lat,data.lng])
-            accuracyCircle.setLatLng([data.lat,data.lng]).setRadius(data.accuracy);
-            vm.fields.correccion = false ;
-        };
-
-        function onFail    (error){
-
-        };
-
-    }
-
-    function createMap() {
-
-        locationService.locate().then(onSuccess,onFail);
-        function onSuccess(data){
-            var map = L.map('step1Map').setView([data.lat,data.lng],16);
-            
-            vm.fields.coordenadas  = '( '+data.lat+','+data.lng+' )'
-            vm.fields.correccion = false ; 
-            vm.fields.precision = data.accuracy ; 
-            L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-            }).addTo(map);
-
-            positionMarker = L.marker([data.lat,data.lng],{draggable:true}).addTo(map)
-                .bindPopup('Posicion actual \nprecision: '+data.accuracy+" mts")
-                .openPopup();
+  vm.next = next;
+  vm.locate = locate;
+  vm.createMap = createMap;
+  vm.keyboardSubmit = keyboardSubmit;
 
 
-            accuracyCircle = L.circle([data.lat,data.lng], data.accuracy,{fillColor:'#03f',fillOpacity:.2,color:'#03f',weight:2}).addTo(map);
-            //L.Control.geocoder().addTo(map);
+  /////////
 
-            positionMarker.on('drag',function(e){
-                vm.fields.coordenadas =  '('+positionMarker.getLatLng().lat+','+positionMarker.getLatLng().lng+')';
-                accuracyCircle.setLatLng(positionMarker.getLatLng())
-               //console.log(positionMarker.getLatLng());
-               $scope.$apply()
-                if ( !vm.fields.correccion  )
-                   { vm.fields.correccion = true ;} 
-              });
-            
-        };
-        function onFail(error){
-            alert(error);
-        };
+  function keyboardSubmit($event) {
+    $event.preventDefault();
+  }
 
-    }
+  function next() {
 
-    $log.log('Hello from your Controller: WizardStepOneController in module main:. This is your controller:', this);
+    $state.go('app.wizard.step2');
+  }
+
+  function locate() {
+    locationService.locate().then(onSuccess, onFail);
+
+    function onSuccess(data) {
+      positionMarker.setLatLng([data.lat, data.lng])
+      accuracyCircle.setLatLng([data.lat, data.lng]).setRadius(data.accuracy);
+      vm.fields.correccion = false;
+    };
+
+    function onFail(error) {
+
+    };
+
+  }
+
+  function createMap() {
+
+    locationService.locate().then(onSuccess, onFail);
+
+    function onSuccess(data) {
+
+      leafletHelper.createMap('step1Map', { center: L.latLng(data.lat, data.lng), zoom: 16 }, 'detalle')
+        .then(function(map) {
+          vm.map = map;
+
+          vm.fields.coordenadas = '( ' + data.lat + ',' + data.lng + ' )'
+          vm.fields.correccion = false;
+          vm.fields.precision = data.accuracy;
+
+          positionMarker = L.marker([data.lat, data.lng], { draggable: true }).addTo(vm.map)
+            .bindPopup('Posicion actual \nprecision: ' + data.accuracy + " mts")
+            .openPopup();
+
+          accuracyCircle = L.circle([data.lat, data.lng], data.accuracy, { fillColor: '#03f', fillOpacity: .2, color: '#03f', weight: 2 }).addTo(vm.map);
+          //L.Control.geocoder().addTo(vm.map);
+
+          positionMarker.on('drag', function(e) {
+            vm.fields.coordenadas = '(' + positionMarker.getLatLng().lat + ',' + positionMarker.getLatLng().lng + ')';
+            accuracyCircle.setLatLng(positionMarker.getLatLng())
+              //console.log(positionMarker.getLatLng());
+            $scope.$apply()
+            if (!vm.fields.correccion) { vm.fields.correccion = true; }
+          });
+        });
+
+    };
+
+    function onFail(error) {
+      alert(error);
+    };
+
+  }
+
+  $log.log('Hello from your Controller: WizardStepOneController in module main:. This is your controller:', this);
 
 }

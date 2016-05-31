@@ -1,49 +1,51 @@
 'use strict';
 angular.module('modules')
-.controller('DetailController', ['$log', '$state','$stateParams','$cordovaDevice', '$cordovaGeolocation','paradasService','leafletHelper',DetailController]);
+  .controller('DetailController', ['$log', '$state', '$stateParams', '$cordovaDevice', '$cordovaGeolocation', 'paradasService', 'leafletHelper', DetailController]);
 
 
-function DetailController($log,$state,$stateParams, $cordovaDevice,$cordovaGeolocation,paradasService,leafletHelper) {
-		var vm = this;
+function DetailController($log, $state, $stateParams, $cordovaDevice, $cordovaGeolocation, paradasService, leafletHelper) {
+  var vm = this;
 
-		vm.map = {};
-		vm.marker = {} ;
-		vm. fields  = {}
-        
-        vm.fields.id = $stateParams.paradaID;
-		
-        paradasService.get($stateParams.paradaID).then(paradaFounded,paradaDontFound)
+  vm.map = {};
+  vm.marker = {};
+  vm.fields = {}
 
-        function paradaFounded(data){
-        	console.log(JSON.stringify(data));
+  vm.fields.id = $stateParams.paradaID;
 
-            leafletHelper.createMap('detailMap', data, 'detalle').then(function(map) {
-                vm.map = map;
-            });
+  paradasService.get($stateParams.paradaID).then(paradaFounded, paradaDontFound)
 
-            leafletHelper.createMarker('detailMap', data, 'simple').then(function(marker) {
-                vm.marker = marker;
-            });
+  function paradaFounded(data) {
+    console.log(JSON.stringify(data));
 
-        	vm.fields = data; 
-        }
-        function paradaDontFound(error){
-        	console.log(error);
-        }
+    leafletHelper.createMap('detailMap', { center: L.latLng(data.lat, data.lng) }, 'detalle')
+      .then(function(map) {
+        vm.map = map;
+      });
 
-		//
-    
-    console.log($stateParams)
+    leafletHelper.createMarker('detailMap', data, 'simple').then(function(marker) {
+      vm.marker = marker;
+    });
+
+    vm.fields = data;
+  }
+
+  function paradaDontFound(error) {
+    console.log(error);
+  }
+
+  //
+
+  console.log($stateParams)
 
 
-    vm.showMe = function (){
-    	console.log(JSON.stringify(vm.fields ))
-    }
+  vm.showMe = function() {
+    console.log(JSON.stringify(vm.fields))
+  }
 
   $log.log('Hello from your Controller: DetailController in module main:. This is your controller:', this);
 
 }
-      
+
 
 
 

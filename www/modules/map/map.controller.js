@@ -1,9 +1,8 @@
 'use strict';
 angular.module('modules')
-  .controller('MapController', ['$log', '$state', '$cordovaDevice', 'locationService', 'paradasService', MapController]);
+  .controller('MapController', ['$log', '$state', 'locationService', 'paradasService', 'leafletHelper', MapController]);
 
-
-function MapController($log, $state, $cordovaDevice, locationService, paradasService) {
+function MapController($log, $state, locationService, paradasService, leafletHelper) {
   var vm = this;
 
   vm.positionMarker = {};
@@ -20,16 +19,16 @@ function MapController($log, $state, $cordovaDevice, locationService, paradasSer
     locationService.locate().then(onSuccess, onFail);
 
     function onSuccess(data) {
-      vm.map = L.map('map').setView([data.lat, data.lng], 16);
-      L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-      }).addTo(vm.map);
+      vm.map = leafletHelper.createMap('map', { center: L.latLng(data.lat, data.lng) }, 'main')
+        .then(function(map) {
+          vm.map = map;
 
-      vm.positionMarker = L.marker([data.lat, data.lng], { draggable: true }).addTo(vm.map)
-        .bindPopup('Posicion actual \nprecision: ' + data.accuracy + " mts")
-        .openPopup();
+          vm.positionMarker = L.marker([data.lat, data.lng], { draggable: true }).addTo(vm.map)
+            .bindPopup('Posicion actual \nprecision: ' + data.accuracy + " mts")
+            .openPopup();
 
-      mapParadas();
+          mapParadas();
+        });
     };
 
     function onFail(error) {
