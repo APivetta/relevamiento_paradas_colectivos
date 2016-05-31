@@ -1,36 +1,24 @@
-#login-background{
-	background:      linear-gradient(
-      rgba(0, 0, 0, 0.45), 
-      rgba(0, 0, 0, 0.45)
-    ), url('../img/login.jpg');
-	background-size: cover;
-
-
-	h1:{
-		color: white;
-		font-weight: bold;
-	}
-
-	.fields{
-		width: 100%;
-		padding-left: 12px ;
-		padding-right: 12px ;
-		border:0px ;
-
-
-		label{
-
-			    margin: 0px;
-			    width: 100%;
-			
-		}
-
-
-
-	}
-
-
+#login-background {
+    background: linear-gradient( 
+    	rgba(0, 0, 0, 0.45), 
+    	rgba(0, 0, 0, 0.45)), 
+    	url('../img/login.jpg');
+    background-size: cover;
+    
+    h1: {
+        color: white;
+        font-weight: bold;
+    }
+    
+    .fields {
+        width: 100%;
+        padding-left: 12px;
+        padding-right: 12px;
+        border: 0px;
+        
+        label {
+            margin: 0px;
+            width: 100%;
+        }
+    }
 }
-
-
-

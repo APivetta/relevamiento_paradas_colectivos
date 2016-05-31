@@ -1,5 +1,18 @@
 'use strict';
 angular.module('modules')
+  .config(['$stateProvider', function($stateProvider) {
+
+    $stateProvider.state('app.wizard.step1', {
+      url: '/paso1',
+      views: {
+        'step-view': {
+          templateUrl: 'modules/wizard/step1/step1.tmpl.html',
+          controller: 'WizardStepOneController as vm'
+        },
+        'step-three-fab': ''
+      }
+    });
+  }])
   .controller('WizardStepOneController', ['$scope', '$log', '$state', '$cordovaDevice', 'leafletHelper', 'leafletData', 'wizardService', 'locationService', WizardStepOneController]);
 
 
@@ -41,7 +54,7 @@ function WizardStepOneController($scope, $log, $state, $cordovaDevice, leafletHe
 
     function onSuccess(data) {
       positionMarker.setLatLng([data.lat, data.lng])
-      accuracyCircle.setLatLng([data.lat, data.lng]).setRadius(data.accuracy);
+      accuracyCircle.setLatLng([data.lat, data.lng]).setRadius(data.accuracy).addTo(vm.map);
       vm.fields.correccion = false;
     };
 
@@ -74,8 +87,7 @@ function WizardStepOneController($scope, $log, $state, $cordovaDevice, leafletHe
 
           positionMarker.on('drag', function(e) {
             vm.fields.coordenadas = '(' + positionMarker.getLatLng().lat + ',' + positionMarker.getLatLng().lng + ')';
-            accuracyCircle.setLatLng(positionMarker.getLatLng())
-              //console.log(positionMarker.getLatLng());
+            vm.map.removeLayer(accuracyCircle)
             $scope.$apply()
             if (!vm.fields.correccion) { vm.fields.correccion = true; }
           });

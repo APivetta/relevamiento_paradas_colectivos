@@ -1,5 +1,18 @@
 'use strict';
 angular.module('modules')
+  .config(['$stateProvider', function($stateProvider) {
+
+    $stateProvider.state('app.detail', {
+      url: '/detalle/:paradaID',
+      views: {
+        'viewContent': {
+          'templateUrl': 'modules/detail/detail.tmpl.html',
+          controller: 'DetailController as vm'
+        },
+        'fabContent': ''
+      }
+    });
+  }])
   .controller('DetailController', ['$log', '$state', '$stateParams', '$cordovaDevice', '$cordovaGeolocation', 'paradasService', 'leafletHelper', DetailController]);
 
 

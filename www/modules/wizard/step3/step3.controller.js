@@ -1,22 +1,42 @@
 'use strict';
 angular.module('modules')
-  .controller('WizardStepThreeController', ['$scope','$log', '$state', 'cameraService', WizardStepThreeController]);
+  .config(['$stateProvider', function($stateProvider) {
+
+    $stateProvider.state('app.wizard.step3', {
+      url: '/paso3',
+      views: {
+        'step-view': {
+          templateUrl: 'modules/wizard/step3/step3.tmpl.html',
+          controller: 'WizardStepThreeController as vm'
+        },
+        'step-three-overlay': {
+          templateUrl: 'modules/wizard/step3/overlay.tmpl.html',
+          controller: 'WizardStepThreeOverlayController as vm'
+        },
+        'step-three-fab': {
+          templateUrl: 'modules/wizard/step3/fab.tmpl.html',
+          controller: 'WizardStepThreeFabController as vm'
+        }
+      }
+    });
+  }])
+  .controller('WizardStepThreeController', ['$scope', '$log', '$state', 'cameraService', WizardStepThreeController]);
 
 
-function WizardStepThreeController($scope,$log, $state, cameraService) {
+function WizardStepThreeController($scope, $log, $state, cameraService) {
   var vm = this;
 
 
   vm.pictures = cameraService.pictures;
   // vm.takePicture = takePicture;
   vm.next = next;
-  vm.deletePicture =  cameraService.deleteByID;
+  vm.deletePicture = cameraService.deleteByID;
 
-// $scope.$watch('vm.pictures',function(a){
-//   console.log(a);
-//   console.log('cammmmmbia todo cambiaaa');
-//   console.log(vm.pictures);
-// })
+  // $scope.$watch('vm.pictures',function(a){
+  //   console.log(a);
+  //   console.log('cammmmmbia todo cambiaaa');
+  //   console.log(vm.pictures);
+  // })
 
   /////////////////////////////
 

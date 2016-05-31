@@ -1,31 +1,22 @@
 <ion-view view-title="Estado y Foto">
-
-
- 	<ion-content data-tap-disabled="true">
-	    <div class="list">
-
-	    <div class="picture-wrapper" ng-repeat="picture in vm.pictures">
-		 	<img ng-src = "{{picture.src}}">
-		 	<div class="caption">
-		 		<div class="title">{{picture.title}}</div>
-		 		<div class="subtitle">{{picture.subtitle}}</div>
-		 	</div>
-		 	<div class="actions-bar">
-		 		<button ng-click="vm.deletePicture(picture.id)"  class="button button-fab on expanded button-energized-900 spin">
-					<i class="icon ion-more"></i>
-				</button>
-
-		 		<button ng-click="vm.deletePicture(picture.id)"  class="button button-fab  on expanded button-energized-900 spin">
-					<i class="icon ion-trash-b"></i>
-				</button>
-
-		 	</div>
-	    </div>
-		 <button class="button button-block" ng-click="vm.next()">Siguiente</button>
-		</div>
-	</ion-content>
-</ion-view> 
-
-
-
-	
+    <ion-content data-tap-disabled="true">
+        <div class="list">
+            <div class="picture-wrapper" ng-repeat="picture in vm.pictures">
+                <img ng-src="{{picture.src}}">
+                <div class="caption">
+                    <div class="title">{{picture.title}}</div>
+                    <div class="subtitle">{{picture.subtitle}}</div>
+                </div>
+                <div class="actions-bar">
+                    <button ng-click="vm.deletePicture(picture.id)" class="button button-fab on expanded button-energized-900 spin">
+                        <i class="icon ion-more"></i>
+                    </button>
+                    <button ng-click="vm.deletePicture(picture.id)" class="button button-fab  on expanded button-energized-900 spin">
+                        <i class="icon ion-trash-b"></i>
+                    </button>
+                </div>
+            </div>
+            <button class="button button-block" ng-click="vm.next()">Siguiente</button>
+        </div>
+    </ion-content>
+</ion-view>

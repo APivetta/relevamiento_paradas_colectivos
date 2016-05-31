@@ -1,34 +1,36 @@
-angular.module( 'services').factory('storageService',['$q',storageService] );
+angular.module('services').factory('storageService', ['$q', storageService]);
 
 
 
 
 
-function storageService ($q) {
-   //servicio destinado a admnistrar el alamcenamiento de datos en el servidor , tanto cuando la coneccion a internet esta disponible o no 
-   
-   function saveRegister(argument) {
-      // body...
-   }
+function storageService($q) {
+  //servicio destinado a admnistrar el alamcenamiento de datos en el servidor , tanto cuando la coneccion a internet esta disponible o no 
 
-   function registerStatus () {}
+  function saveRegister(argument) {
+    // body...
+  }
 
-   function getPendent(){}
+  function registerStatus() {}
 
-   function login (){}
-   function saveUserData (){}   
-   function saveCampaindata (){}
+  function getPendent() {}
+
+  function login() {}
+
+  function saveUserData() {}
+
+  function saveCampaindata() {}
 
 
 
 
-   return {
-      saveRegister: saveRegister,
-      registerStatus: registerStatus,
-      getPendent:getPendent,
-      login:login,
-      saveUserData:saveUserData,
-      saveCampaindata:saveCampaindata
-   }
+  return {
+    saveRegister: saveRegister,
+    registerStatus: registerStatus,
+    getPendent: getPendent,
+    login: login,
+    saveUserData: saveUserData,
+    saveCampaindata: saveCampaindata
+  }
 
 }

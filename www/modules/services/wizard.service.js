@@ -1,36 +1,36 @@
-angular.module( 'services').factory('wizardService',['$q','storageService',wizardService] );
+angular.module('services').factory('wizardService', ['$q', 'storageService', wizardService]);
 
 
 
 
-function wizardService($q,storageService) {
+function wizardService($q, storageService) {
 
-   var active = false ; 
-   var fields = {} ; 
+  var active = false;
+  var fields = {};
 
-   var picture = {} ;
+  var picture = {};
 
-   function start(){
-      active = true ;
-      fields = {} ; 
+  function start() {
+    active = true;
+    fields = {};
 
-   }
-
-
-   function blanck(){}
+  }
 
 
-   function store(){
+  function blanck() {}
 
-      storageService.handleStorage()
-      
-   }
 
-   return {
-      start:start,
-      fields : fields,
-      picture : picture,
-      store : store
-   }
+  function store() {
+
+    storageService.handleStorage()
+
+  }
+
+  return {
+    start: start,
+    fields: fields,
+    picture: picture,
+    store: store
+  }
 
 }

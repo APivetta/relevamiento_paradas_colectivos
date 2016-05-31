@@ -1,5 +1,21 @@
 'use strict';
 angular.module('modules')
+  .config(['$stateProvider', function($stateProvider) {
+
+    $stateProvider.state('app.map', {
+      url: '/map',
+      views: {
+        'viewContent': {
+          templateUrl: 'modules/map/map.tmpl.html',
+          controller: 'MapController as vm',
+        },
+        'fabContent': {
+          templateUrl: 'modules/map/fab.tmpl.html',
+          controller: 'MapFabButtonController as vm'
+        }
+      }
+    });
+  }])
   .controller('MapController', ['$log', '$state', 'locationService', 'paradasService', 'leafletHelper', MapController]);
 
 function MapController($log, $state, locationService, paradasService, leafletHelper) {
