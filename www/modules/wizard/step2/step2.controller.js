@@ -11,74 +11,68 @@ angular.module('modules')
         },
         'step-three-fab': ''
       }
-    })
+    });
   }])
-  .controller('WizardStepTwoController', ['$log', '$state', '$cordovaDevice', 'wizardService', WizardStepTwoController]);
+  .controller('WizardStepTwoController', ['$log', '$state', '$cordovaDevice', 'wizardService',
+    function WizardStepTwoController($log, $state, $cordovaDevice, wizardService) {
+      var vm = this;
 
-function WizardStepTwoController($log, $state, $cordovaDevice, wizardService) {
-  var vm = this;
+      function next() {
+        $state.go('app.wizard.step3');
+      }
 
-  vm.map = {
-    center: {}
-  };
+      function itemsClicked() {}
 
-  vm.$state = $state;
-  vm.fields = wizardService.fields;
+      function itemsRemoved() {}
 
-  vm.next = next;
-  vm.getLineas = getLineas;
+      function getLineas() {
+        return [
+          { 'id': '1', 'label': 'linea 1' },
+          { 'id': '2', 'label': 'linea 2' },
+          { 'id': '3', 'label': 'linea 3' },
+          { 'id': '4', 'label': 'linea 4' },
+          { 'id': '5', 'label': 'linea 5' },
+          { 'id': '6', 'label': 'linea 6' },
+          { 'id': '7', 'label': 'linea 7' },
+          { 'id': '8', 'label': 'linea 8' },
+          { 'id': '9', 'label': 'linea 9' },
+          { 'id': '10', 'label': 'linea 10' },
+          { 'id': '11', 'label': 'linea 11' },
+          { 'id': '12', 'label': 'linea 12' },
+          { 'id': '13', 'label': 'linea 13' },
+          { 'id': '14', 'label': 'linea 14' },
 
-  vm.itemsClicked = itemsClicked;
-  vm.itemsRemoved = itemsRemoved;
-  vm.modelToItemMethod = modelToItemMethod;
+        ];
+      }
 
-  function next() {
-    $state.go('app.wizard.step3');
-  }
+      function modelToItemMethod(modelValue) {
 
-  function itemsClicked() {}
+        // get the full model item from the model value and return it. You need to implement the `getModelItem` method by yourself  
+        // as this is just a sample. The method needs to retrieve the whole item (like the `items-method`) from just the model value. 
+        var modelItem = [{ 'id': '7', 'label': 'linea 7' },
+          { 'id': '8', 'label': 'linea 8' },
+          { 'id': '9', 'label': 'linea 9' }
+        ];
 
-  function itemsRemoved() {}
+        return modelItem;
+      }
 
-  function getLineas() {
-    return [
-      { 'id': '1', 'label': 'linea 1' },
-      { 'id': '2', 'label': 'linea 2' },
-      { 'id': '3', 'label': 'linea 3' },
-      { 'id': '4', 'label': 'linea 4' },
-      { 'id': '5', 'label': 'linea 5' },
-      { 'id': '6', 'label': 'linea 6' },
-      { 'id': '7', 'label': 'linea 7' },
-      { 'id': '8', 'label': 'linea 8' },
-      { 'id': '9', 'label': 'linea 9' },
-      { 'id': '10', 'label': 'linea 10' },
-      { 'id': '11', 'label': 'linea 11' },
-      { 'id': '12', 'label': 'linea 12' },
-      { 'id': '13', 'label': 'linea 13' },
-      { 'id': '14', 'label': 'linea 14' },
+      vm.map = {
+        center: {}
+      };
 
-    ];
-  }
+      vm.$state = $state;
+      vm.fields = wizardService.fields;
 
+      vm.next = next;
+      vm.getLineas = getLineas;
 
+      vm.itemsClicked = itemsClicked;
+      vm.itemsRemoved = itemsRemoved;
+      vm.modelToItemMethod = modelToItemMethod;
+      vm.externalModel = ['test1', 'test2', 'test3'];
 
+      $log.log('Hello from your Controller: WizardStepTwoController in module main:. This is your controller:', this);
 
-  function modelToItemMethod(modelValue) {
-
-    // get the full model item from the model value and return it. You need to implement the `getModelItem` method by yourself  
-    // as this is just a sample. The method needs to retrieve the whole item (like the `items-method`) from just the model value. 
-    var modelItem = [{ 'id': '7', 'label': 'linea 7' },
-      { 'id': '8', 'label': 'linea 8' },
-      { 'id': '9', 'label': 'linea 9' }
-    ];
-
-    return modelItem;
-  }
-
-
-  vm.externalModel = ['test1', 'test2', 'test3'];
-
-
-  $log.log('Hello from your Controller: WizardStepTwoController in module main:. This is your controller:', this);
-
-}
+    }
+  ]);

@@ -20,34 +20,27 @@ angular.module('modules')
       }
     });
   }])
-  .controller('WizardStepThreeController', ['$scope', '$log', '$state', 'cameraService', WizardStepThreeController]);
+  .controller('WizardStepThreeController', ['$scope', '$log', '$state', 'cameraService',
+    function WizardStepThreeController($scope, $log, $state, cameraService) {
+      var vm = this;
 
 
-function WizardStepThreeController($scope, $log, $state, cameraService) {
-  var vm = this;
+      vm.pictures = cameraService.pictures;
+      // vm.takePicture = takePicture;
+      vm.next = function next() {
+        $state.go('app.wizard.lastStep');
+      };
+      vm.deletePicture = cameraService.deleteByID;
 
+      // $scope.$watch('vm.pictures',function(a){
+      //   console.log(a);
+      //   console.log('cammmmmbia todo cambiaaa');
+      //   console.log(vm.pictures);
+      // })
 
-  vm.pictures = cameraService.pictures;
-  // vm.takePicture = takePicture;
-  vm.next = next;
-  vm.deletePicture = cameraService.deleteByID;
+      vm.$state = $state;
 
-  // $scope.$watch('vm.pictures',function(a){
-  //   console.log(a);
-  //   console.log('cammmmmbia todo cambiaaa');
-  //   console.log(vm.pictures);
-  // })
+      $log.log('Hello from your Controller: WizardStepThreeController in module main:. This is your controller:', this);
 
-  /////////////////////////////
-
-  vm.$state = $state;
-
-  function next() {
-    $state.go('app.wizard.lastStep');
-  }
-
-
-
-  $log.log('Hello from your Controller: WizardStepThreeController in module main:. This is your controller:', this);
-
-}
+    }
+  ]);

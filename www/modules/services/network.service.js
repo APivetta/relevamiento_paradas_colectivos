@@ -1,35 +1,35 @@
-angular.module('services').factory('networkService', ['$q', networkService]);
+'use strict';
+angular.module('services').factory('networkService', ['$q',
+  function networkService($q) {
+
+    function getStatus() {
+      var promise = $q(function(success) {
+        var networkState = navigator.connection.type;
+        console.log('Connection type: ' + networkState);
+        success(networkState);
+      });
+
+      return promise;
+    }
+
+    function subscribe(evento, callback) {
+      var promise = $q(function(success) {
+
+        document.addEventListener(evento, callback, false);
+        success(true);
+      });
+
+      return promise;
+    }
 
 
-function networkService($q) {
+    return {
+      getStatus: getStatus,
+      subscribe: subscribe
+    };
 
-  function getStatus() {
-    var promise = $q(function(success, fail) {
-      var networkState = navigator.connection.type;
-      console.log('Connection type: ' + networkState);
-      success(networkState);
-    });
-
-    return promise;
   }
-
-  function subscribe(evento, callback) {
-    var promise = $q(function(success, fail) {
-
-      document.addEventListener(evento, callback, false);
-      success(true)
-    });
-
-    return promise;
-  }
-
-
-  return {
-    getStatus: getStatus,
-    subscribe: subscribe
-  }
-
-}
+]);
 
 
 

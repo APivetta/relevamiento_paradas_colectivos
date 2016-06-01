@@ -1,36 +1,30 @@
-angular.module('services').factory('wizardService', ['$q', 'storageService', wizardService]);
+'use strict';
+angular.module('services').factory('wizardService', ['$q', 'storageService',
+  function wizardService($q, storageService) {
 
+    var active = false;
+    var fields = {};
 
+    var picture = {};
 
+    function start() {
+      active = true;
+      fields = {};
 
-function wizardService($q, storageService) {
+    }
 
-  var active = false;
-  var fields = {};
+    function store() {
 
-  var picture = {};
+      storageService.handleStorage();
 
-  function start() {
-    active = true;
-    fields = {};
+    }
+
+    return {
+      start: start,
+      fields: fields,
+      picture: picture,
+      store: store
+    };
 
   }
-
-
-  function blanck() {}
-
-
-  function store() {
-
-    storageService.handleStorage()
-
-  }
-
-  return {
-    start: start,
-    fields: fields,
-    picture: picture,
-    store: store
-  }
-
-}
+]);

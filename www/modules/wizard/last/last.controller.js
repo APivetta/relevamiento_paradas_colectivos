@@ -13,25 +13,25 @@ angular.module('modules')
       }
     });
   }])
-  .controller('WizardLastStepController', ['$log', '$state', 'cameraService', 'wizardService', WizardLastStepController]);
+  .controller('WizardLastStepController', ['$log', '$state', 'cameraService', 'wizardService',
+    function WizardLastStepController($log, $state, wizardService, cameraService) {
+      var vm = this;
+
+      vm.fields = wizardService.fields;
+      vm.pictures = cameraService.pictures;
 
 
-function WizardLastStepController($log, $state, wizardService, cameraService) {
-  var vm = this;
+      /////////////////////////////
 
-  vm.fields = wizardService.fields;
-  vm.pictures = cameraService.pictures;
+      vm.$state = $state;
 
+      function next() {
+        $state.go('detail');
+      }
 
-  /////////////////////////////
+      vm.next = next;
 
-  vm.$state = $state;
+      $log.log('Hello from your Controller: WizardLastStepController in module main:. This is your controller:', this);
 
-  function next() {
-    $state.go('detail');
-  }
-
-
-  $log.log('Hello from your Controller: WizardLastStepController in module main:. This is your controller:', this);
-
-}
+    }
+  ]);

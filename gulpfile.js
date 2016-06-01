@@ -9,9 +9,18 @@ var sh = require('shelljs');
 var templateCache = require('gulp-angular-templatecache');
 
 var paths = {
+  js: ['./www/*.js', './www/modules/**/*.js','!./www/modules/core/templates.js'],
   sass: ['./www/*.scss', './www/modules/**/*.scss'],
   templates: ['./www/*.html', './www/modules/**/*.html']
 };
+
+var jshint = require('gulp-jshint');
+ 
+gulp.task('lint', function () {
+    return gulp.src(paths.js)
+            .pipe(jshint('.jshintrc.json'))
+            .pipe(jshint.reporter( 'jshint-stylish' ));
+});
 
 gulp.task('default', ['sass', 'template-cache', 'watch']);
 
