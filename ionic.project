@@ -1,4 +1,11 @@
 {
-  "name": "tabs",
-  "app_id": ""
+  "name": "relevamiento_paradas_colectivos",
+  "app_id": "",
+  "gulpStartupTasks": [
+    "default"
+  ],
+  "watchPatterns": [
+    "www/**/*",
+    "!www/lib/**/*"
+  ]
 }
