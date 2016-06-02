@@ -35,8 +35,28 @@ angular.module('services').factory('locationService', ['$q',
       return promise;
     }
 
+    function watch(cb, err) {
+      function onSuccess(position) {
+        var location = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude,
+          accuracy: position.coords.accuracy,
+          timestamp: position.timestamp
+        };
+
+        cb(location);
+      }
+      return navigator.geolocation.watchPosition(onSuccess, err, geolocationOptions);
+    }
+
+    function unWatch(watchID) {
+      navigator.geolocation.clearWatch(watchID);
+    }
+
     return {
-      locate: locate
+      locate: locate,
+      watch: watch,
+      unWatch: unWatch
     };
 
   }

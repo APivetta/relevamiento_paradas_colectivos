@@ -16,8 +16,8 @@ angular.module('modules')
       }
     });
   }])
-  .controller('MapController', ['$log', '$state', 'locationService', 'paradasService', 'leafletHelper',
-    function MapController($log, $state, locationService, paradasService, leafletHelper) {
+  .controller('MapController', ['$scope', '$log', '$state', 'locationService', 'paradasService', 'leafletHelper',
+    function MapController($scope, $log, $state, locationService, paradasService, leafletHelper) {
       var vm = this;
 
       function openWizard() {
@@ -53,9 +53,9 @@ angular.module('modules')
             .then(function(map) {
               vm.map = map;
 
-              vm.positionMarker = L.marker([data.lat, data.lng], { draggable: true }).addTo(vm.map)
-                .bindPopup('Posicion actual \nprecision: ' + data.accuracy + ' mts')
-                .openPopup();
+              vm.positionMarker = L.marker([data.lat, data.lng], { draggable: true }).addTo(vm.map);
+              vm.accuracyCircle = L.circle([data.lat, data.lng], data.accuracy, { fillColor: '#03f', fillOpacity: 0.2, color: '#03f', weight: 2 }).addTo(vm.map);
+              vm.watchLocation();
 
               mapParadas();
             });
@@ -78,13 +78,38 @@ angular.module('modules')
         });
       }
 
+      function onResume() {
+        vm.watchLocation();
+      }
+
+      function onPause() {
+        locationService.unWatch(vm.watchId);
+      }
+
+      vm.watchLocation = function() {
+        vm.watchId = locationService.watch(function onWatch(data) {
+          vm.positionMarker.setLatLng([data.lat, data.lng]);
+          vm.accuracyCircle.setLatLng([data.lat, data.lng]).setRadius(data.accuracy).addTo(vm.map);
+        });
+      }
+
       vm.positionMarker = {};
+      vm.accuracyCircle = {};
       vm.map = {};
       createMap();
       vm.openWizard = openWizard;
       vm.locate = locate;
 
       $log.log('Hello from your Controller: MapController in module main:. This is your controller:', this);
+
+      $scope.$on('$destroy', function() {
+        locationService.unWatch(vm.watchId);
+        document.removeEventListener('resume', onResume);
+        document.removeEventListener('pause', onPause);
+      });
+
+      document.addEventListener('resume', onResume);
+      document.addEventListener('pause', onPause);
 
     }
   ]);
