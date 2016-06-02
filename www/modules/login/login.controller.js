@@ -8,34 +8,34 @@ angular.module('modules')
       'controller': 'LoginController as vm'
     });
   }])
-  .controller('LoginController', ['$log', '$state', 'networkService', LoginController]);
+  .controller('LoginController', ['$log', '$state', 'networkService',
+    function LoginController($log, $state, networkService) {
+      var vm = this;
 
-function LoginController($log, $state, networkService) {
-  var vm = this;
+      vm.user = {
+        name: 'usuarioModelo',
+        pass: '12345678'
+      };
 
-  vm.user = {
-    name: "usuarioModelo",
-    pass: "12345678"
-  };
+      // $cordovaSplashscreen.show();
+      // console.log($cordovaSplashscreen);
+      //networkService.getStatus().then(handleNetwork);
 
-  vm.login = login;
+      function handleNetwork(networkType) {
 
-  // $cordovaSplashscreen.show();
-  // console.log($cordovaSplashscreen);
-  //networkService.getStatus().then(handleNetwork);
+        vm.network = networkType;
 
-  function handleNetwork(networkType) {
+        // si la red no esta conectada  == {none }
+        //loguear contra base local de usuarios 
+      }
 
-    vm.network = networkType;
+      function login() {
+        $state.go('app.map');
+      }
 
-    // si la red no esta conectada  == {none }
-    //loguear contra base local de usuarios 
-  }
+      vm.login = login;
 
-  function login() {
-    $state.go('app.map');
-  }
+      $log.log('Hello from your Controller: LoginController in module main:. This is your controller:', this);
 
-  $log.log('Hello from your Controller: LoginController in module main:. This is your controller:', this);
-
-}
+    }
+  ]);

@@ -1,16 +1,15 @@
 'use strict';
 angular.module('modules')
-  .controller('MapFabButtonController', ['$log', '$state', MapFabButtonController]);
+  .controller('MapFabButtonController', ['$log', '$state',
+    function MapFabButtonController($log, $state) {
+      var vm = this;
 
+      function openWizard() {
+        $state.go('app.wizard.step1');
+      }
 
-function MapFabButtonController($log, $state) {
-  var vm = this;
+      vm.openWizard = openWizard;
 
-  vm.openWizard = openWizard;
-
-  function openWizard() {
-    $state.go('app.wizard.step1');
-  }
-
-  $log.log('Hello from your Controller: MapFabButtonController in module main:. This is your controller:', this);
-}
+      $log.log('Hello from your Controller: MapFabButtonController in module main:. This is your controller:', this);
+    }
+  ]);

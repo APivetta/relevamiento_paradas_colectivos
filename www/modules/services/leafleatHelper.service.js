@@ -3,7 +3,6 @@ angular.module('services').factory('leafletHelper', function($q) {
 
   var map = [];
   var marker = [];
-  var paths = [];
 
   var tilesResources = {
     osm: {
@@ -45,16 +44,8 @@ angular.module('services').factory('leafletHelper', function($q) {
     }
   };
 
-
-  var actions = {
-    marker: {
-
-    }
-  }
-
-
   function createMap(id, opts, type) {
-    var promise = $q(function(success, fail) {
+    var promise = $q(function(success) {
 
       var options = angular.extend({}, preset.map[type].options, opts);
 
@@ -72,7 +63,7 @@ angular.module('services').factory('leafletHelper', function($q) {
   }
 
   function createMarker(mapID, data, type) {
-    var promise = $q(function(success, fail) {
+    var promise = $q(function(success) {
       var tempMarker = L.marker([data.lat, data.lng], preset.marker[type]).addTo(map[mapID]);
       marker[data.id] = tempMarker;
 
