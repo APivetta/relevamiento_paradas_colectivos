@@ -39,8 +39,10 @@ angular.module('services').factory('leafletHelper', function($q) {
     marker: {
       simple: {
         draggable: false
+      },
+      draggable: {
+        draggable: true
       }
-
     }
   };
 
@@ -72,8 +74,25 @@ angular.module('services').factory('leafletHelper', function($q) {
     return promise;
   }
 
+  function createCssMarker(mapID, data, css, type) {
+    var promise = $q(function(success) {
+
+      var icon = L.divIcon({
+        className: 'ion-ios-circle-filled position-marker',
+        iconSize:[36,36]
+      });
+
+      var tempMarker = L.marker([data.lat, data.lng], { icon: icon, draggable: true }).addTo(map[mapID]);
+      marker[data.id] = tempMarker;
+
+      success(tempMarker);
+    });
+    return promise;
+  }
+
   return {
     createMap: createMap,
-    createMarker: createMarker
+    createMarker: createMarker,
+    createCssMarker: createCssMarker
   };
 });

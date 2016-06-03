@@ -9757,6 +9757,12 @@ a.button {
   height: 100%;
   width: 100%; }
 
+.position-marker {
+  text-align: center;
+  font-size: 2em;
+  top: 1px !important;
+  color: #4285F4; }
+
 #detailMap {
   width: 100%;
   height: 300px; }

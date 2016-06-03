@@ -49,12 +49,19 @@ angular.module('modules')
         }
 
         function onSuccess(data) {
-          vm.map = leafletHelper.createMap('map', { center: L.latLng(data.lat, data.lng) }, 'main')
+          leafletHelper.createMap('map', { center: L.latLng(data.lat, data.lng) }, 'main')
             .then(function(map) {
               vm.map = map;
 
-              vm.positionMarker = L.marker([data.lat, data.lng], { draggable: true }).addTo(vm.map);
-              vm.accuracyCircle = L.circle([data.lat, data.lng], data.accuracy, { fillColor: '#03f', fillOpacity: 0.2, color: '#03f', weight: 2 }).addTo(vm.map);
+              //vm.positionMarker = L.marker([data.lat, data.lng], { draggable: true }).addTo(vm.map);
+
+
+              leafletHelper.createCssMarker('map', data, 'position-icon', 'draggable')
+                .then(function(marker) {
+                  vm.positionMarker = marker;
+                });
+
+              vm.accuracyCircle = L.circle([data.lat, data.lng], data.accuracy, { fillColor: '#4285F4', fillOpacity: 0.2, color: '#4285F4', weight: 1 }).addTo(vm.map);
               vm.watchLocation();
 
               mapParadas();
