@@ -65,16 +65,13 @@ angular.module('modules')
 
         }
 
-        locationService.locate().then(onSuccess, onFail);
+        locationService.locate().then(onSuccess);
       }
 
       function locate() {
-        locationService.locate().then(function(data) {
-          console.log(data);
-          vm.map.panTo(new L.LatLng(data.lat, data.lng), {
-            animate: true,
-            duration: 0.5
-          });
+        vm.map.panTo(new L.LatLng(vm.position.lat, vm.position.lng), {
+          animate: true,
+          duration: 0.5
         });
       }
 
@@ -88,11 +85,13 @@ angular.module('modules')
 
       vm.watchLocation = function() {
         vm.watchId = locationService.watch(function onWatch(data) {
+          vm.position = data;
           vm.positionMarker.setLatLng([data.lat, data.lng]);
           vm.accuracyCircle.setLatLng([data.lat, data.lng]).setRadius(data.accuracy).addTo(vm.map);
         });
       }
 
+      vm.position = {};
       vm.positionMarker = {};
       vm.accuracyCircle = {};
       vm.map = {};
