@@ -9,3 +9,18 @@
     top: 1px !important;
     color: #4285F4;
 }
+
+.fab-container {
+    width: 75px;
+    height: 190px;
+    left: auto;
+    right: 0px;
+    top: auto;
+    bottom: 0;
+    z-index: 4 !important;
+    pointer-events: none;
+    background-color: transparent;
+    .button {
+        pointer-events: all;
+    }
+}

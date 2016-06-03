@@ -13,8 +13,8 @@ angular.module('modules')
       }
     });
   }])
-  .controller('WizardStepOneController', ['$scope', '$log', '$state', '$cordovaDevice', 'leafletHelper', 'leafletData', 'wizardService', 'locationService',
-    function WizardStepOneController($scope, $log, $state, $cordovaDevice, leafletHelper, leafletData, wizardService, locationService) {
+  .controller('WizardStepOneController', ['$scope', '$log', '$state', '$cordovaDevice', 'leafletHelper', 'wizardService', 'locationService',
+    function WizardStepOneController($scope, $log, $state, $cordovaDevice, leafletHelper,  wizardService, locationService) {
       var vm = this;
 
       vm.ready = false;

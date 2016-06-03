@@ -4,7 +4,6 @@ angular.module('modules', [
     'ngCordova',
     'ui.router',
     'ionMdInput',
-    'leaflet-directive',
     'ionic-material',
     'ion-autocomplete'
   ])
