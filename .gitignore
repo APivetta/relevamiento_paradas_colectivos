@@ -2,6 +2,7 @@
 # http://git-scm.com/docs/gitignore
 
 www/lib/*
+www/modules/core/templates.js
 node_modules/
 platforms/
 plugins/
