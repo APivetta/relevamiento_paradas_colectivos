@@ -110,8 +110,6 @@ angular.module('modules')
             .then(function(map) {
               vm.map = map;
 
-              vm.map.on('dragstart', stopTracking);
-
               vm.map.on('zoomend', function() {
                 if (vm.tracking) {
                   locate();
