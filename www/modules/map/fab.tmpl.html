@@ -1,8 +1,8 @@
 <div class="fab-container">
-<button ng-click="vm.openWizard()" id="fab-friends" class="button button-fab button-fab-top-right on expanded button-energized-900 spin">
-    <i class="icon ion-plus"></i>
-</button>
-<button ng-click="vm.openWizard()" id="fab-friends" class="button button-fab button-fab-bottom-right on expanded button-energized-900 spin">
-    <i class="icon ion-plus"></i>
-</button>
+    <button ng-click="vm.activateGPS()" id="fab-friends" class="button button-fab button-fab-top-right on expanded button-light spin">
+        <i ng-class="{tracking: vm.tracking}" class="icon ion-android-locate"></i>
+    </button>
+    <button ng-click="vm.openWizard()" id="fab-friends" class="button button-fab button-fab-bottom-right on expanded button-assertive-900 spin">
+        <i class="icon ion-plus"></i>
+    </button>
 </div>

@@ -72,7 +72,7 @@ angular.module('modules')
               accuracyCircle = L.circle([data.lat, data.lng], data.accuracy, { fillColor: '#03f', fillOpacity: 0.2, color: '#03f', weight: 2 }).addTo(vm.map);
               //L.Control.geocoder().addTo(vm.map);
 
-              positionMarker.on('drag', function() {
+              positionMarker.on('dragstart', function() {
                 vm.fields.coordenadas = '(' + positionMarker.getLatLng().lat + ',' + positionMarker.getLatLng().lng + ')';
                 vm.map.removeLayer(accuracyCircle);
                 $scope.$apply();

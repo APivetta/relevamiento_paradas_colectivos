@@ -38,10 +38,18 @@ angular.module('services').factory('leafletHelper', function($q) {
     },
     marker: {
       simple: {
-        draggable: false
+        options: {
+          draggable: false
+        }
       },
-      draggable: {
-        draggable: true
+      position: {
+        options: {
+          draggable: true
+        },
+        icon: {
+          className: 'ion-ios-circle-filled position-marker',
+          iconSize: [36, 36]
+        }
       }
     }
   };
@@ -64,9 +72,10 @@ angular.module('services').factory('leafletHelper', function($q) {
     return promise;
   }
 
-  function createMarker(mapID, data, type) {
+  function createMarker(mapID, data, type, opts) {
     var promise = $q(function(success) {
-      var tempMarker = L.marker([data.lat, data.lng], preset.marker[type]).addTo(map[mapID]);
+      var options = angular.extend({}, preset.marker[type].options, opts);
+      var tempMarker = L.marker([data.lat, data.lng], options).addTo(map[mapID]);
       marker[data.id] = tempMarker;
 
       success(tempMarker);
@@ -74,15 +83,14 @@ angular.module('services').factory('leafletHelper', function($q) {
     return promise;
   }
 
-  function createCssMarker(mapID, data, css, type) {
+  function createCssMarker(mapID, data, type, opts) {
     var promise = $q(function(success) {
 
-      var icon = L.divIcon({
-        className: 'ion-ios-circle-filled position-marker',
-        iconSize:[36,36]
-      });
+      var icon = L.divIcon(preset.marker[type].icon);
 
-      var tempMarker = L.marker([data.lat, data.lng], { icon: icon, draggable: true }).addTo(map[mapID]);
+      var options = angular.extend({ icon: icon }, preset.marker[type].options, opts);
+
+      var tempMarker = L.marker([data.lat, data.lng], options).addTo(map[mapID]);
       marker[data.id] = tempMarker;
 
       success(tempMarker);

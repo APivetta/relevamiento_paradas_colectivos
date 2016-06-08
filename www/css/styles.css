@@ -9761,7 +9761,7 @@ a.button {
   text-align: center;
   font-size: 2em;
   top: 1px !important;
-  color: #4285F4; }
+  color: #4285f4; }
 
 .fab-container {
   width: 75px;
@@ -9775,6 +9775,8 @@ a.button {
   background-color: transparent; }
   .fab-container .button {
     pointer-events: all; }
+  .fab-container .tracking {
+    color: #4285f4; }
 
 #detailMap {
   width: 100%;

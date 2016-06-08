@@ -7,7 +7,7 @@
     text-align: center;
     font-size: 2em;
     top: 1px !important;
-    color: #4285F4;
+    color: $position-blue;
 }
 
 .fab-container {
@@ -22,5 +22,8 @@
     background-color: transparent;
     .button {
         pointer-events: all;
+    }
+    .tracking{
+        color: $position-blue;
     }
 }
