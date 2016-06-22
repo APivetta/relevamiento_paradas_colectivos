@@ -14,7 +14,7 @@ angular.module('modules')
       }
 
       function openWizard() {
-        $state.go('app.wizard.step1');
+        $rootScope.$broadcast('new-stop');
       }
 
       $rootScope.$on('stop-tracking', function() {

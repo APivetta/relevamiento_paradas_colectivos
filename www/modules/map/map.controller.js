@@ -28,15 +28,28 @@ angular.module('modules')
       vm.watchLocation = watchLocation;
       vm.traking = false;
 
-      $log.log('Hello from your Controller: MapController in module main:. This is your controller:', this);
-
       $scope.$on('track-position', function(event, tracking) {
-        console.log(tracking);
         updateTracking(tracking);
       })
 
+      $scope.$on('new-stop', function(event, tracking) {
+        var params = {
+          position: vm.position
+        }
+
+        if (!vm.tracking) {
+          params.accuracy = 0;
+        } else {
+          params.accuracy = vm.position.accuracy;
+        }
+
+        $state.go('app.wizard.step1', params);
+      })
+
       $scope.$on('$destroy', function() {
-        locationService.unWatch(vm.watchId);
+        if (vm.tracking) {
+          locationService.unWatch(vm.watchId);
+        }
         document.removeEventListener('resume', onResume);
         document.removeEventListener('pause', onPause);
       });
@@ -57,6 +70,7 @@ angular.module('modules')
           vm.watchLocation();
         } else {
           locationService.unWatch(vm.watchId);
+          vm.map.removeLayer(vm.accuracyCircle);
         }
       }
 
@@ -79,12 +93,6 @@ angular.module('modules')
         if (vm.tracking) {
           locationService.unWatch(vm.watchId);
         }
-      }
-
-      function stopTracking() {
-        vm.map.removeLayer(vm.accuracyCircle);
-        updateTracking(false);
-        $scope.$emit('stop-tracking');
       }
 
       (function createMap() {
@@ -119,7 +127,6 @@ angular.module('modules')
               leafletHelper.createCssMarker('map', data, 'position')
                 .then(function(marker) {
                   vm.positionMarker = marker;
-                  vm.positionMarker.on('dragstart', stopTracking);
                 });
 
               vm.accuracyCircle = L.circle([data.lat, data.lng], 0, { fillColor: '#4285F4', fillOpacity: 0.2, color: '#4285F4', weight: 1 }).addTo(vm.map);

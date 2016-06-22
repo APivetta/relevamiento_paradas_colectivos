@@ -10,20 +10,29 @@ angular.module('modules')
           controller: 'WizardStepOneController as vm'
         },
         'step-three-fab': ''
+      },
+      params: {
+        position: {},
+        accuracy: ''
       }
     });
   }])
   .controller('WizardStepOneController', ['$scope', '$log', '$state', '$cordovaDevice', 'leafletHelper', 'wizardService', 'locationService',
-    function WizardStepOneController($scope, $log, $state, $cordovaDevice, leafletHelper,  wizardService, locationService) {
+    function WizardStepOneController($scope, $log, $state, $cordovaDevice, leafletHelper, wizardService, locationService) {
       var vm = this;
 
       vm.ready = false;
+      vm.$state = $state;
+      vm.next = next;
+      vm.locate = locate;
+      vm.keyboardSubmit = keyboardSubmit;
 
+      vm.position = $state.params.position;
+      vm.accuracy = $state.params.accuracy;
 
       wizardService.start();
       vm.fields = wizardService.fields;
 
-      //map 
       var positionMarker = {};
       var accuracyCircle = {};
 
@@ -53,50 +62,36 @@ angular.module('modules')
 
       }
 
-      function createMap() {
+      (function createMap() {
 
-        function onSuccess(data) {
+        leafletHelper.createMap('step1Map', { center: L.latLng(vm.position.lat, vm.position.lng), zoom: 16 }, 'detalle')
+          .then(function(map) {
+            vm.map = map;
 
-          leafletHelper.createMap('step1Map', { center: L.latLng(data.lat, data.lng), zoom: 16 }, 'detalle')
-            .then(function(map) {
-              vm.map = map;
+            vm.fields.coordenadas = '( ' + vm.position.lat + ',' + vm.position.lng + ' )';
+            vm.fields.correccion = false;
+            vm.fields.precision = vm.accuracy;
 
-              vm.fields.coordenadas = '( ' + data.lat + ',' + data.lng + ' )';
-              vm.fields.correccion = false;
-              vm.fields.precision = data.accuracy;
+            positionMarker = L.marker([vm.position.lat, vm.position.lng], { draggable: true }).addTo(vm.map);
 
-              positionMarker = L.marker([data.lat, data.lng], { draggable: true }).addTo(vm.map)
-                .bindPopup('Posicion actual \nprecision: ' + data.accuracy + ' mts')
-                .openPopup();
+            accuracyCircle = L.circle([vm.position.lat, vm.position.lng], vm.accuracy, { fillColor: '#03f', fillOpacity: 0.2, color: '#03f', weight: 2 }).addTo(vm.map);
 
-              accuracyCircle = L.circle([data.lat, data.lng], data.accuracy, { fillColor: '#03f', fillOpacity: 0.2, color: '#03f', weight: 2 }).addTo(vm.map);
-              //L.Control.geocoder().addTo(vm.map);
-
-              positionMarker.on('dragstart', function() {
-                vm.fields.coordenadas = '(' + positionMarker.getLatLng().lat + ',' + positionMarker.getLatLng().lng + ')';
-                vm.map.removeLayer(accuracyCircle);
-                $scope.$apply();
-                if (!vm.fields.correccion) { vm.fields.correccion = true; }
-              });
+            positionMarker.on('dragstart', function() {
+              vm.map.removeLayer(accuracyCircle);
             });
 
-        }
+            positionMarker.on('dragend', function() {
+              vm.fields.coordenadas = '(' + positionMarker.getLatLng().lat + ',' + positionMarker.getLatLng().lng + ')';
+              if (!vm.fields.correccion) { vm.fields.correccion = true; }
+              $scope.$apply();
+            });
+          });
 
-        function onFail(error) {
-          console.log(error);
-        }
 
-        locationService.locate().then(onSuccess, onFail);
 
-      }
 
-      createMap();
 
-      vm.$state = $state;
-      vm.next = next;
-      vm.locate = locate;
-      vm.createMap = createMap;
-      vm.keyboardSubmit = keyboardSubmit;
+      })();
 
       $log.log('Hello from your Controller: WizardStepOneController in module main:. This is your controller:', this);
 

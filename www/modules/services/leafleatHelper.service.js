@@ -44,7 +44,7 @@ angular.module('services').factory('leafletHelper', function($q) {
       },
       position: {
         options: {
-          draggable: true
+          draggable: false
         },
         icon: {
           className: 'ion-ios-circle-filled position-marker',
