@@ -9829,3 +9829,7 @@ span.modification-label {
       width: 20%;
       border-radius: 10%;
       background: white; }
+
+.step1 .step1-map {
+  height: 400px;
+  width: 100%; }

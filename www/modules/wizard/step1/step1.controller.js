@@ -27,8 +27,8 @@ angular.module('modules')
       vm.locate = locate;
       vm.keyboardSubmit = keyboardSubmit;
 
-      vm.position = $state.params.position;
-      vm.accuracy = $state.params.accuracy;
+      vm.position = angular.extend({}, { lat: -34.60372677564638, lng: -58.38165342807769 }, $state.params.position);
+      vm.accuracy = $state.params.accuracy || 0;
 
       wizardService.start();
       vm.fields = wizardService.fields;
@@ -51,7 +51,12 @@ angular.module('modules')
         function onSuccess(data) {
           positionMarker.setLatLng([data.lat, data.lng]);
           accuracyCircle.setLatLng([data.lat, data.lng]).setRadius(data.accuracy).addTo(vm.map);
+          vm.map.panTo([data.lat, data.lng], {
+            animate: true,
+            duration: 0.5
+          });
           vm.fields.correccion = false;
+          vm.fields.precision = data.accuracy;
         }
 
         function onFail(error) {
@@ -76,6 +81,10 @@ angular.module('modules')
 
             accuracyCircle = L.circle([vm.position.lat, vm.position.lng], vm.accuracy, { fillColor: '#03f', fillOpacity: 0.2, color: '#03f', weight: 2 }).addTo(vm.map);
 
+            if (vm.accuracy == 0) {
+              vm.map.removeLayer(accuracyCircle);
+            }
+
             positionMarker.on('dragstart', function() {
               vm.map.removeLayer(accuracyCircle);
             });
@@ -86,11 +95,6 @@ angular.module('modules')
               $scope.$apply();
             });
           });
-
-
-
-
-
       })();
 
       $log.log('Hello from your Controller: WizardStepOneController in module main:. This is your controller:', this);

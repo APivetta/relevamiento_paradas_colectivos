@@ -1,45 +1,44 @@
 <ion-view view-title="Localizacion Nueva Parada">
     <ion-nav-buttons side="right">
-        <button ng-click="vm.locate();" class="button-icon icon ion-pinpoint"></button>
+        <button ng-click="vm.locate();" class="button button-icon button-clear ion-android-locate"></button>
     </ion-nav-buttons>
     <ion-content data-tap-disabled="true">
-        <div class="">
-            <div style="height:400px; width:100%;" id="step1Map"></div>
-            <!-- <leaflet lf-center="vm.map.center" markers="vm.map.markers" height="400px" width="100%" id="step1Map"></leaflet> -->
+        <div class="step1">
+            <div class="step1-map" id="step1Map"></div>
+            <form ng-submit="vm.keyboardSubmit($event)" navalidate>
+                <div class="list">
+                    <label class="item item-input item-floating-label">
+                        <span class="input-label">Calle</span>
+                        <input type="text" ng-model="vm.fields.nombre" next-focus id="field1" placeholder="Calle">
+                    </label>
+                    <label class="item item-input item-floating-label">
+                        <span class="input-label">Numeracion</span>
+                        <input type="number" ng-model="vm.fields.numero" next-focus id="field2" placeholder="Numeracion">
+                    </label>
+                    <label class="item item-input item-floating-label">
+                        <span class="input-label">Coordenadas</span>
+                        <span ng-if="vm.fields.correccion" class="modification-label">Corregida</span>
+                        <span ng-if="!vm.fields.correccion" class="precition-label"> Precision: {{vm.fields.precision}}Mts</span>
+                        <input type="text" ng-model="vm.fields.coordenadas" disabled="">
+                    </label>
+                    <label class="item item-input item-select">
+                        <div class="input-label">Paridad</div>
+                        <select ng-model="vm.fields.paridad">
+                            <option>PAR</option>
+                            <option>INPAR</option>
+                        </select>
+                    </label>
+                    <label class="item item-input item-floating-label">
+                        <span class="input-label">Entre Calle 1</span>
+                        <input type="text" ng-model="vm.fields.entre1" placeholder="Entre Calle 1">
+                    </label>
+                    <label class="item item-input item-floating-label">
+                        <span class="input-label">Entre Calle 2</span>
+                        <input type="text" ng-model="vm.fields.entre2" placeholder="Entre Calle 2">
+                    </label>
+                    <button class="button button-block" ng-click="vm.next()">Siguiente</button>
+                </div>
+            </form>
         </div>
-        <form ng-submit="vm.keyboardSubmit($event)" navalidate>
-            <div class="list">
-                <label class="item item-input item-floating-label">
-                    <span class="input-label">Calle</span>
-                    <input type="text" ng-model="vm.fields.nombre" next-focus id="field1" placeholder="Calle">
-                </label>
-                <label class="item item-input item-floating-label">
-                    <span class="input-label">Numeracion</span>
-                    <input type="number" ng-model="vm.fields.numero" next-focus id="field2" placeholder="Numeracion">
-                </label>
-                <label class="item item-input item-floating-label">
-                    <span class="input-label">Coordenadas</span>
-                    <span ng-if="vm.fields.correccion" class="modification-label">Corregida</span>
-                    <span ng-if="!vm.fields.correccion" class="precition-label"> Precision: {{vm.fields.precision}}Mts</span>
-                    <input type="text" ng-model="vm.fields.coordenadas" disabled="">
-                </label>
-                <label class="item item-input item-select">
-                    <div class="input-label">Paridad</div>
-                    <select ng-model="vm.fields.paridad">
-                        <option>PAR</option>
-                        <option>INPAR</option>
-                    </select>
-                </label>
-                <label class="item item-input item-floating-label">
-                    <span class="input-label">Entre Calle 1</span>
-                    <input type="text" ng-model="vm.fields.entre1" placeholder="Entre Calle 1">
-                </label>
-                <label class="item item-input item-floating-label">
-                    <span class="input-label">Entre Calle 2</span>
-                    <input type="text" ng-model="vm.fields.entre2" placeholder="Entre Calle 2">
-                </label>
-                <button class="button button-block" ng-click="vm.next()">Siguiente</button>
-            </div>
-        </form>
     </ion-content>
 </ion-view>
