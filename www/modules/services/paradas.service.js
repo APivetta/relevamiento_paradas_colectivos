@@ -38,7 +38,7 @@ angular.module('services').factory('paradasService', function($q, $http) {
       $http({
         method: 'GET',
         //url: 'mock/paradas_viejas.geojson'
-        url: 'mock/paradas.geojson'
+        url: 'mock/paradas_viejas.geojson'
       }).then(queryOk, fail);
     });
 

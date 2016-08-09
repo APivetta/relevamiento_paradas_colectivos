@@ -99,16 +99,16 @@ angular.module('modules')
         locationService.locate().then(onSuccess);
 
         function mapParadas() {
+          var markers = L.markerClusterGroup();
           paradasService.list().then(function(data) {
             data.forEach(function(element) {
               var coords = [element.lat, element.lng];
-              L.marker(coords, { clickable: true, draggable: false })
-                .addTo(vm.map)
+              markers.addLayer(L.marker(coords, { clickable: true, draggable: false })
                 .on('click', function(e) {
                   $state.go('app.detail', { paradaID: element.id });
-                });
+                }));
             });
-
+          markers.addTo(vm.map);
           });
         }
 
